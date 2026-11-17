@@ -1,0 +1,28 @@
+{
+  "candidate": {
+    "url": "https://huggingface.co/api/models/FacebookAI/roberta-base",
+    "status": 200,
+    "id": "FacebookAI/roberta-base",
+    "sha": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "config.json",
+      "dict.txt",
+      "flax_model.msgpack",
+      "merges.txt",
+      "model.safetensors",
+      "pytorch_model.bin",
+      "rust_model.ot",
+      "tf_model.h5",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "vocab.json"
+    ]
+  },
+  "upstream_identifier": {
+    "url": "https://huggingface.co/api/models/roberta-base-cased",
+    "status": 401,
+    "error": "{\"error\":\"Invalid username or password.\"}"
+  }
+}

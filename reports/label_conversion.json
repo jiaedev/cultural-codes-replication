@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-11-17T05:30:20.207565+00:00",
+  "mapping": {
+    "False": 0,
+    "True": 1
+  },
+  "test_predictions_generated": false,
+  "splits": {
+    "train": {
+      "rows": 8497,
+      "raw": {
+        "False": 1825,
+        "True": 6672
+      },
+      "converted": {
+        "0": 1825,
+        "1": 6672
+      },
+      "paired_labels_identical": true
+    },
+    "val": {
+      "rows": 544,
+      "raw": {
+        "True": 414,
+        "False": 130
+      },
+      "converted": {
+        "1": 414,
+        "0": 130
+      },
+      "paired_labels_identical": true
+    },
+    "test": {
+      "rows": 478,
+      "raw": {
+        "False": 109,
+        "True": 369
+      },
+      "converted": {
+        "0": 109,
+        "1": 369
+      },
+      "paired_labels_identical": true
+    }
+  }
+}

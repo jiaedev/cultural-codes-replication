@@ -1,0 +1,48 @@
+{
+  "validated_at_utc": "2026-11-17T05:37:46.159057+00:00",
+  "status": "Stage 3 complete for CPU, single process; GPU/full-model execution unverified",
+  "checks": {
+    "original_source_hashes_verified": true,
+    "stage2_checks_passed": true,
+    "dedicated_venv": true,
+    "cpu_smoke_passed": true,
+    "both_synthetic_conditions_forward_passed": true,
+    "validation_only": true,
+    "evaluation_preserves_all_five": true,
+    "tokenized_train_validation_only": true,
+    "no_truncation_at_capacity": true,
+    "label_alignment": true,
+    "smoke_script_matches_recorded_hash": true,
+    "adapter_matches_recorded_hashes": true
+  },
+  "report_hashes": {
+    "reports/dataset_validation.json": "88ce4ccd6a608f5da4cd8afe30410a4df95e0a95d11ed4c82444c241535913e7",
+    "reports/label_conversion.json": "b225b0b94a7bb3f21c0a257e53982a09e641f70a3c928fea24142257e2f652d6",
+    "reports/tokenization_audit.json": "1becd66d8516e8d5fd9fa82affd9c24c830a8ce61c520af692416dd634d609e2",
+    "reports/smoke_cpu.json": "69fe3b5b5540717832f5e04965694e6c5bd9355f8069aff8c35f04ecfe316aeb",
+    "reports/tokenizer_manifest.json": "24ec4aedaa78159506eeb3ac9c0617d4574e3b9e65c382648ae87967b8d20659",
+    "reports/environment_summary.json": "bd6278fb57d9366da62dce071984021da3560d903c8dc975c183b8918982ec45",
+    "reports/dependency_artifacts.json": "01419591c07673b922e76f1a418ce17e4f2be450a7cd49f570bb8bcf86aa5124"
+  },
+  "implementation_hashes": {
+    "scripts/acquire_sources.py": "dc16df1bec894de6ef7f39bbd99275a985604f0e02bd146875a19d15d1a6c9fa",
+    "scripts/audit_labels.py": "a712a83a4bd6f11773643944afb8c3cc4e9abaed6edd062daa3f13feb155cbe5",
+    "scripts/audit_tokenization.py": "32b886b537bf5cb071c7e19b2ee401d78aff4900786f3010b455003f0e03c450",
+    "scripts/capture_environment.py": "b110b3ec423bc95a0b24d1ea6c1821d1dd62f92b1058910456a0dedf95adf6c6",
+    "scripts/prepare_tokenizer.py": "94ace6c8bba9bb3d81952aa4550edb7d11bad1608605f6780f23f2dd159c112d",
+    "scripts/smoke_test.py": "7a1d4069907a9b4d54f6d5f32979087320fd5948ac317cd4843febedc66dd899",
+    "scripts/validate_dataset.py": "bd900df4331552b4b4179cfb5e9991301f5c72108d8f8481d9938e873b110d64",
+    "src/cultural_codes/data.py": "6457f7ef2d514476a4266e47f61b14a2a06d3b7cae9ff34063e1a8a544d6a00d",
+    "src/cultural_codes/metrics.py": "da255206d58f1946237018653a53531e1411c160aef04846fbdd6056a7507075",
+    "src/cultural_codes/trainer.py": "c7d7f5d90592e82be6beb36a9f18e13cec0c8001bc040fc266e76581c4f202fa",
+    "src/cultural_codes/__init__.py": "d2efd74570117ee6c9faf1117895f9e5423dfd7540059fa621e95716bcb49430",
+    "environment/requirements-win-cpu.lock.txt": "ceaa9c73a550e9abd2b3db4b5394fe946caf5caddccc5b895625855ae4406866",
+    "configs/model_candidate.json": "e3acf8df0fd7a8b1a0a121b484327c40680bc14388d788d0d51eeddc5cf7cff2"
+  },
+  "research_training_performed": false,
+  "research_performance_comparison_performed": false,
+  "research_test_predictions_generated": false,
+  "stage4_protocol_frozen": false,
+  "publication_note": "Derived from unchanged Stage 3 records. Local path/inventory checks are omitted; no experiment was rerun.",
+  "source_aggregate_sha256": "780124abe0527d6b7060670895233419417f46a2f1807e8fc50d25bb078e8991"
+}

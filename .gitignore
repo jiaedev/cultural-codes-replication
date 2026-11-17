@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+tmp/
+
+# Keep acquired CSVs locally; provenance and retrieval code remain versionable.
+sources/upstream/data/
+
+# Regenerable paper inspection derivatives; the unchanged PDF is preserved.
+reports/acl_paper_text.txt
+reports/paper_page*.png
+
+# Stage 3 local environments, download caches, tokenizer snapshots and synthetic weights.
+.cache/
+artifacts/
+.venv-*/
+
+# Local operational history and path-bearing diagnostics; preserve without publishing.
+reports/relocation.json
+scripts/relocation_audit.py
+reports/environment.json
+reports/stage3_validation.json
+reports/compatibility_attempts.json
+reports/install_*.json
+reports/environment_replay.log
+reports/smoke_cpu_execution.log

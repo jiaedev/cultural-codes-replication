@@ -1,0 +1,14 @@
+{
+  "repository": "FacebookAI/roberta-base",
+  "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "local_path": "artifacts/model_candidate",
+  "label2id": {
+    "False": 0,
+    "True": 1
+  },
+  "id2label": {
+    "0": "False",
+    "1": "True"
+  },
+  "status": "Stage 3 executable candidate; original paper checkpoint identity not verified; not a frozen Stage 4 protocol"
+}

@@ -1,0 +1,172 @@
+{
+  "generated_at_utc": "2026-11-17T05:27:43.571475+00:00",
+  "model": {
+    "repository": "FacebookAI/roberta-base",
+    "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "local_path": "artifacts/model_candidate",
+    "label2id": {
+      "False": 0,
+      "True": 1
+    },
+    "id2label": {
+      "0": "False",
+      "1": "True"
+    },
+    "status": "Stage 3 executable candidate; original paper checkpoint identity not verified; not a frozen Stage 4 protocol"
+  },
+  "tokenizer_class": "RobertaTokenizerFast",
+  "tokenizer_is_fast": true,
+  "tokenizer_model_max_length": 512,
+  "max_position_embeddings": 514,
+  "usable_total_sequence_capacity": 512,
+  "capacity_note": "Architecture/tokenizer bound, not a Stage 4 chosen maximum.",
+  "special_tokens_per_single_input": 2,
+  "truncation_side": "right",
+  "padding_side": "right",
+  "special_tokens_map": {
+    "bos_token": "<s>",
+    "eos_token": "</s>",
+    "unk_token": "<unk>",
+    "sep_token": "</s>",
+    "pad_token": "<pad>",
+    "cls_token": "<s>",
+    "mask_token": "<mask>"
+  },
+  "splits": {
+    "train": {
+      "rows": 8497,
+      "labels": {
+        "raw": {
+          "False": 1825,
+          "True": 6672
+        },
+        "converted": {
+          "0": 1825,
+          "1": 6672
+        },
+        "paired_labels_identical": true
+      },
+      "conditions": {
+        "base_text": {
+          "tokens_including_special_tokens": {
+            "min": 63,
+            "p25": 92.0,
+            "median": 98.0,
+            "p75": 103.0,
+            "p95": 108.0,
+            "p99": 112.0,
+            "max": 149,
+            "mean": 96.87
+          },
+          "sequences_changed_at_capacity": 0,
+          "full_string_roundtrip_matches": 8497,
+          "rows_with_base_field_content_cut_at_capacity": {
+            "remaining": 0,
+            "rationale": 0,
+            "target": 0,
+            "hint": 0
+          }
+        },
+        "personality_only": {
+          "tokens_including_special_tokens": {
+            "min": 109,
+            "p25": 145.0,
+            "median": 162.0,
+            "p75": 178.0,
+            "p95": 186.0,
+            "p99": 190.0,
+            "max": 197,
+            "mean": 160.848
+          },
+          "sequences_changed_at_capacity": 0,
+          "full_string_roundtrip_matches": 8497,
+          "rows_with_base_field_content_cut_at_capacity": {
+            "remaining": 0,
+            "rationale": 0,
+            "target": 0,
+            "hint": 0
+          }
+        }
+      },
+      "added_personality_tokens": {
+        "min": 46,
+        "p25": 46.0,
+        "median": 80.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80,
+        "mean": 63.978
+      },
+      "both_conditions_fit_capacity": true
+    },
+    "validation": {
+      "rows": 544,
+      "labels": {
+        "raw": {
+          "True": 414,
+          "False": 130
+        },
+        "converted": {
+          "1": 414,
+          "0": 130
+        },
+        "paired_labels_identical": true
+      },
+      "conditions": {
+        "base_text": {
+          "tokens_including_special_tokens": {
+            "min": 66,
+            "p25": 92.0,
+            "median": 98.0,
+            "p75": 103.0,
+            "p95": 108.0,
+            "p99": 111.0,
+            "max": 118,
+            "mean": 97.129
+          },
+          "sequences_changed_at_capacity": 0,
+          "full_string_roundtrip_matches": 544,
+          "rows_with_base_field_content_cut_at_capacity": {
+            "remaining": 0,
+            "rationale": 0,
+            "target": 0,
+            "hint": 0
+          }
+        },
+        "personality_only": {
+          "tokens_including_special_tokens": {
+            "min": 124,
+            "p25": 153.0,
+            "median": 173.0,
+            "p75": 181.0,
+            "p95": 186.0,
+            "p99": 189.0,
+            "max": 197,
+            "mean": 167.566
+          },
+          "sequences_changed_at_capacity": 0,
+          "full_string_roundtrip_matches": 544,
+          "rows_with_base_field_content_cut_at_capacity": {
+            "remaining": 0,
+            "rationale": 0,
+            "target": 0,
+            "hint": 0
+          }
+        }
+      },
+      "added_personality_tokens": {
+        "min": 46,
+        "p25": 46.0,
+        "median": 80.0,
+        "p75": 80.0,
+        "p95": 80.0,
+        "p99": 80.0,
+        "max": 80,
+        "mean": 70.438
+      },
+      "both_conditions_fit_capacity": true
+    }
+  },
+  "test_tokenized": false
+}

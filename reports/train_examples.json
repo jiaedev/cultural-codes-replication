@@ -1,0 +1,18 @@
+[
+  {
+    "split": "train",
+    "csv_data_row_1based": 1,
+    "export_index": "0",
+    "base_text": "remaining: ['spot', 'charge', 'novel', 'sound', 'march', 'scientist', 'drop', 'beat', 'soul', 'green', 'field', 'boom', 'part', 'check', 'strike', 'link', 'roulette', 'row', 'disease', 'sub', 'revolution', 'fall', 'switch', 'ray', 'tag'], rationale: sub is a type of sandwich, target: sub, hint: sandwich",
+    "personality_only": "GIVER: [conscientiousness: 3.5, extraversion: 3.0, neuroticism: 1.5, openness: 3.0, agreeableness: 3.0], GUESSER: [conscientiousness: 3.0, extraversion: 2.5, neuroticism: 2.0, openness: 2.0, agreeableness: 3.0], remaining: ['spot', 'charge', 'novel', 'sound', 'march', 'scientist', 'drop', 'beat', 'soul', 'green', 'field', 'boom', 'part', 'check', 'strike', 'link', 'roulette', 'row', 'disease', 'sub', 'revolution', 'fall', 'switch', 'ray', 'tag'], rationale: sub is a type of sandwich, target: sub, hint: sandwich",
+    "output": "False"
+  },
+  {
+    "split": "train",
+    "csv_data_row_1based": 35,
+    "export_index": "34",
+    "base_text": "remaining: ['trip', 'war', 'vacuum', 'green', 'boom', 'press', 'spell', 'mine', 'time', 'date', 'well', 'club', 'degree', 'strike', 'row', 'centaur', 'spy', 'undertaker', 'play', 'leprechaun', 'pass', 'capital', 'round', 'ray', 'point'], rationale: green is a kind of color, target: green, hint: color",
+    "personality_only": "GIVER: [conscientiousness: 3.0, extraversion: 0.0, neuroticism: 3.0, openness: 2.5, agreeableness: 3.0], GUESSER: [None], remaining: ['trip', 'war', 'vacuum', 'green', 'boom', 'press', 'spell', 'mine', 'time', 'date', 'well', 'club', 'degree', 'strike', 'row', 'centaur', 'spy', 'undertaker', 'play', 'leprechaun', 'pass', 'capital', 'round', 'ray', 'point'], rationale: green is a kind of color, target: green, hint: color",
+    "output": "True"
+  }
+]

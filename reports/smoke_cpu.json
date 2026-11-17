@@ -1,0 +1,209 @@
+{
+  "generated_at_utc": "2026-11-17T05:36:55.551785+00:00",
+  "scope": "Invented synthetic examples, random tiny RoBERTa, no research-data training or Test predictions",
+  "device": "cpu",
+  "world_size": 1,
+  "pretrained_weights_used": false,
+  "full_size_model_capacity_validated": false,
+  "technical_only_settings": {
+    "seed": 314159,
+    "learning_rate": 0.001,
+    "max_steps": 2,
+    "batch_size": 2,
+    "max_length": 64,
+    "train_drop_last": true
+  },
+  "tiny_model_config": {
+    "return_dict": true,
+    "output_hidden_states": false,
+    "torchscript": false,
+    "dtype": "float32",
+    "pruned_heads": {},
+    "tie_word_embeddings": true,
+    "chunk_size_feed_forward": 0,
+    "is_encoder_decoder": false,
+    "is_decoder": false,
+    "cross_attention_hidden_size": null,
+    "add_cross_attention": false,
+    "tie_encoder_decoder": false,
+    "architectures": [
+      "RobertaForSequenceClassification"
+    ],
+    "finetuning_task": null,
+    "id2label": {
+      "0": "False",
+      "1": "True"
+    },
+    "label2id": {
+      "False": 0,
+      "True": 1
+    },
+    "task_specific_params": null,
+    "problem_type": "single_label_classification",
+    "tokenizer_class": null,
+    "prefix": null,
+    "bos_token_id": 0,
+    "pad_token_id": 1,
+    "eos_token_id": 2,
+    "sep_token_id": null,
+    "decoder_start_token_id": null,
+    "max_length": 20,
+    "min_length": 0,
+    "do_sample": false,
+    "early_stopping": false,
+    "num_beams": 1,
+    "temperature": 1.0,
+    "top_k": 50,
+    "top_p": 1.0,
+    "typical_p": 1.0,
+    "repetition_penalty": 1.0,
+    "length_penalty": 1.0,
+    "no_repeat_ngram_size": 0,
+    "encoder_no_repeat_ngram_size": 0,
+    "bad_words_ids": null,
+    "num_return_sequences": 1,
+    "output_scores": false,
+    "return_dict_in_generate": false,
+    "forced_bos_token_id": null,
+    "forced_eos_token_id": null,
+    "remove_invalid_values": false,
+    "exponential_decay_length_penalty": null,
+    "suppress_tokens": null,
+    "begin_suppress_tokens": null,
+    "num_beam_groups": 1,
+    "diversity_penalty": 0.0,
+    "_name_or_path": "",
+    "transformers_version": "4.57.1",
+    "tf_legacy_loss": false,
+    "use_bfloat16": false,
+    "vocab_size": 50265,
+    "hidden_size": 32,
+    "num_hidden_layers": 1,
+    "num_attention_heads": 4,
+    "hidden_act": "gelu",
+    "intermediate_size": 64,
+    "hidden_dropout_prob": 0.1,
+    "attention_probs_dropout_prob": 0.1,
+    "max_position_embeddings": 514,
+    "type_vocab_size": 2,
+    "initializer_range": 0.02,
+    "layer_norm_eps": 1e-12,
+    "position_embedding_type": "absolute",
+    "use_cache": true,
+    "classifier_dropout": null,
+    "model_type": "roberta",
+    "output_attentions": false
+  },
+  "model_parameter_count": 1634722,
+  "metric_fixtures": {
+    "perfect": {
+      "expected_macro_f1": 1.0,
+      "expected_accuracy": 1.0,
+      "observed": {
+        "macro_f1": 1.0,
+        "accuracy": 1.0
+      }
+    },
+    "all_wrong": {
+      "expected_macro_f1": 0.0,
+      "expected_accuracy": 0.0,
+      "observed": {
+        "macro_f1": 0.0,
+        "accuracy": 0.0
+      }
+    },
+    "only_positive_balanced": {
+      "expected_macro_f1": 0.3333333333333333,
+      "expected_accuracy": 0.5,
+      "observed": {
+        "macro_f1": 0.3333333333333333,
+        "accuracy": 0.5
+      }
+    },
+    "only_negative_imbalanced": {
+      "expected_macro_f1": 0.42857142857142855,
+      "expected_accuracy": 0.75,
+      "observed": {
+        "macro_f1": 0.42857142857142855,
+        "accuracy": 0.75
+      }
+    },
+    "absent_class_still_in_macro": {
+      "expected_macro_f1": 0.5,
+      "expected_accuracy": 1.0,
+      "observed": {
+        "macro_f1": 0.5,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "invalid_label_cases_rejected": true,
+  "stock_drop_last_true_eval_batch_sizes": [
+    2,
+    2
+  ],
+  "stock_drop_last_true_test_batch_sizes": [
+    2,
+    2
+  ],
+  "adapted_train_batch_sizes": [
+    2,
+    2
+  ],
+  "adapted_eval_batch_sizes": [
+    2,
+    2,
+    1
+  ],
+  "validation_indices_seen": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "synthetic_final_indices_seen": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "synthetic_input_conditions_forward_passed": [
+    "base_text",
+    "personality_only"
+  ],
+  "synthetic_condition_labels_identical": true,
+  "controlled_selector_fixture": {
+    "values": [
+      0.2,
+      0.8,
+      0.1
+    ],
+    "new_best_flags": [
+      true,
+      true,
+      false
+    ],
+    "selected_step": 102
+  },
+  "finite_forward_loss": true,
+  "initial_forward_loss": 0.6931612491607666,
+  "completed_optimizer_steps": 2,
+  "validation_metric_key": "eval_validation_macro_f1",
+  "validation_only_selection": true,
+  "missing_metric_error": "Checkpoint selection metric 'eval_validation_macro_f1' absent; available: ['eval_validation_accuracy']",
+  "wrong_metric_configuration_error": "metric_for_best_model must be 'eval_validation_macro_f1', greater_is_better=True",
+  "best_checkpoint": "artifacts\\synthetic_smoke_cpu\\checkpoint-1",
+  "selected_best_metric_matches_checkpoint_states": true,
+  "reload_logits_max_absolute_difference": 0.0,
+  "final_prediction_count": 5,
+  "script_sha256": "7a1d4069907a9b4d54f6d5f32979087320fd5948ac317cd4843febedc66dd899",
+  "adapter_sha256": {
+    "data.py": "6457f7ef2d514476a4266e47f61b14a2a06d3b7cae9ff34063e1a8a544d6a00d",
+    "metrics.py": "da255206d58f1946237018653a53531e1411c160aef04846fbdd6056a7507075",
+    "trainer.py": "c7d7f5d90592e82be6beb36a9f18e13cec0c8001bc040fc266e76581c4f202fa",
+    "__init__.py": "d2efd74570117ee6c9faf1117895f9e5423dfd7540059fa621e95716bcb49430"
+  },
+  "note": "Synthetic metric values are plumbing checks, not research performance."
+}

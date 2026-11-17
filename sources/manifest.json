@@ -1,0 +1,152 @@
+{
+  "repository": "https://github.com/SALT-NLP/codenames",
+  "commit": "9bf4550e681f7a42ac406439b00b0c717f59f13c",
+  "paper_version": "ACL published version, Findings 2023",
+  "acquisition_script": "scripts/acquire_sources.py",
+  "files": [
+    {
+      "url": "https://api.github.com/repos/SALT-NLP/codenames/git/trees/9bf4550e681f7a42ac406439b00b0c717f59f13c?recursive=1",
+      "resolved_url": "https://api.github.com/repos/SALT-NLP/codenames/git/trees/9bf4550e681f7a42ac406439b00b0c717f59f13c?recursive=1",
+      "local_path": "sources/github_tree.json",
+      "acquired_at_utc": "2026-11-17T04:59:22.657465+00:00",
+      "bytes": 22574,
+      "sha256": "688ce3e5e2598b1001bb256c7e638e6a198dbdfeb1b200b38c805fde2d993f75",
+      "git_blob_sha1": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/README.md",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/README.md",
+      "local_path": "sources/upstream/README.md",
+      "acquired_at_utc": "2026-11-17T04:59:22.933611+00:00",
+      "bytes": 4037,
+      "sha256": "4dfba7d3a2806bb7d78afcc905ff62871cff2d1e24c0f6150b23b33b61dcc302",
+      "git_blob_sha1": "df754130e97360c30a8b0bcdf11c5770ff6d3e14"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/models/baseline_classification.py",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/models/baseline_classification.py",
+      "local_path": "sources/upstream/models/baseline_classification.py",
+      "acquired_at_utc": "2026-11-17T04:59:23.169424+00:00",
+      "bytes": 2207,
+      "sha256": "a0db5bd5989e92a2b9e7d180ead561f7a007e486a9f85449a744a53536742e7b",
+      "git_blob_sha1": "3b57fed4d06984f3e41abb050159a916202e14e3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/select_best_model.py",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/select_best_model.py",
+      "local_path": "sources/upstream/select_best_model.py",
+      "acquired_at_utc": "2026-11-17T04:59:23.427247+00:00",
+      "bytes": 1958,
+      "sha256": "27de7759f4748e2505afe0e3419e2020343f53c94a33bf73394abaf9ca0b1972",
+      "git_blob_sha1": "f193f9c9b885146eb2ced8ffcdbd13dd80764097"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/train_classification.sh",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/train_classification.sh",
+      "local_path": "sources/upstream/train_classification.sh",
+      "acquired_at_utc": "2026-11-17T04:59:23.665227+00:00",
+      "bytes": 307,
+      "sha256": "874b20f48ab7b2de17a50a34aa5699d6c2bf117cc01986352e752dd36d5b832f",
+      "git_blob_sha1": "b3a6e663177ebc15181bab8da1b655075bcb3077"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/train_all_best.sh",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/train_all_best.sh",
+      "local_path": "sources/upstream/train_all_best.sh",
+      "acquired_at_utc": "2026-11-17T04:59:23.911865+00:00",
+      "bytes": 734,
+      "sha256": "709101567fa53b13a9ff10c867de309a2486f990ea19c2088487315cbaf66bcc",
+      "git_blob_sha1": "f9e845869413c335c9fe8d5abb89b5cd93182b68"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/Main.elm",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/Main.elm",
+      "local_path": "sources/upstream/duet/src/Main.elm",
+      "acquired_at_utc": "2026-11-17T04:59:24.176146+00:00",
+      "bytes": 16213,
+      "sha256": "8993aaee5ed3abd18a8e6d47c0402399900352c8639d640d6d8976c746577b5e",
+      "git_blob_sha1": "aa827e4a9394610653f83d0ac940bcc8108597ff"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/User.elm",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/User.elm",
+      "local_path": "sources/upstream/duet/src/User.elm",
+      "acquired_at_utc": "2026-11-17T04:59:24.435817+00:00",
+      "bytes": 1282,
+      "sha256": "395d09318a9d669f99e0a9d699e267bc7409395e759be63b566cdfa2f41b68c7",
+      "git_blob_sha1": "015da1c436ce77b7d379ff26ab420fd50f0d1a44"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/Game.elm",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/src/Game.elm",
+      "local_path": "sources/upstream/duet/src/Game.elm",
+      "acquired_at_utc": "2026-11-17T04:59:24.774021+00:00",
+      "bytes": 30111,
+      "sha256": "9ec6a16c80f0c3810b492e856c28cb94a09993dbd1b3d3a0ba578cd5a52ce923",
+      "git_blob_sha1": "1f8c8c7c9b866718bfb6ea308ebe68ea72a8e7c0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/gameapi/handler.go",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/duet/gameapi/handler.go",
+      "local_path": "sources/upstream/duet/gameapi/handler.go",
+      "acquired_at_utc": "2026-11-17T04:59:25.031949+00:00",
+      "bytes": 22264,
+      "sha256": "d8a3a3e880b9b67a4bb51a9b34736ed25e7c5792975ca804cfdac69c0f2c56df",
+      "git_blob_sha1": "5ed4edc497d8e2af2a3601c8d6b54f6e9f91a57b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/train.csv",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/train.csv",
+      "local_path": "sources/upstream/data/correct_guess_task/train.csv",
+      "acquired_at_utc": "2026-11-17T04:59:26.845540+00:00",
+      "bytes": 26523895,
+      "sha256": "365353ea03de2d98e9aad3c1f1b906fdbcbe72aa292f77db41b587b0f466f48c",
+      "git_blob_sha1": "3f8d5f00d79bb5cfaa306fbd67df13aca23d4439"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/val.csv",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/val.csv",
+      "local_path": "sources/upstream/data/correct_guess_task/val.csv",
+      "acquired_at_utc": "2026-11-17T04:59:27.301883+00:00",
+      "bytes": 1759804,
+      "sha256": "a5bcf752d81b9ff10c033d112a85b32b9cee6426eaff57fa3ab95f5d13106b9f",
+      "git_blob_sha1": "63853674be6ab5362d21687d2f7df130f8fc061e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/test.csv",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/test.csv",
+      "local_path": "sources/upstream/data/correct_guess_task/test.csv",
+      "acquired_at_utc": "2026-11-17T04:59:28.523657+00:00",
+      "bytes": 1565947,
+      "sha256": "a596a3ca1763c6bf5fe96400030847a4d704118a97c29ba7bd42016a944f411c",
+      "git_blob_sha1": "b123c3c44201340b9c3fa6114ed4dda1adaf8003"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/all.csv",
+      "resolved_url": "https://raw.githubusercontent.com/SALT-NLP/codenames/9bf4550e681f7a42ac406439b00b0c717f59f13c/data/correct_guess_task/all.csv",
+      "local_path": "sources/upstream/data/correct_guess_task/all.csv",
+      "acquired_at_utc": "2026-11-17T04:59:30.495729+00:00",
+      "bytes": 29850732,
+      "sha256": "3e359d6753e9b7bae1494d533caf6340f3bbf7467b0182a50a85c2a75ab74a03",
+      "git_blob_sha1": "a005dd6fa53e0dc5e59b3b46df47cadfaa8bc0e5"
+    },
+    {
+      "url": "https://aclanthology.org/2023.findings-acl.410/",
+      "resolved_url": "https://aclanthology.org/2023.findings-acl.410/",
+      "local_path": "sources/paper/acl_page.html",
+      "acquired_at_utc": "2026-11-17T04:59:31.568189+00:00",
+      "bytes": 43908,
+      "sha256": "bdca948581a26190cfaa048fea742cccece1f12b1a42b5c475c36fecba94d584",
+      "git_blob_sha1": null
+    },
+    {
+      "url": "https://aclanthology.org/2023.findings-acl.410.pdf",
+      "resolved_url": "https://aclanthology.org/2023.findings-acl.410.pdf",
+      "local_path": "sources/paper/2023.findings-acl.410.pdf",
+      "acquired_at_utc": "2026-11-17T04:59:33.358601+00:00",
+      "bytes": 1742213,
+      "sha256": "b001a2dc799b9d2ec7530e31bc5d84d9f50fd1230d7a92b9497636afc39a657c",
+      "git_blob_sha1": null
+    }
+  ]
+}

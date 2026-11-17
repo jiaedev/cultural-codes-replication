@@ -1,0 +1,1396 @@
+{
+  "schema_version": 1,
+  "repository_commit": "9bf4550e681f7a42ac406439b00b0c717f59f13c",
+  "generated_at_utc": "2026-11-17T05:35:38.669867+00:00",
+  "python_version": "3.11.17",
+  "python_implementation": "CPython",
+  "command": "python scripts/validate_dataset.py",
+  "actual_argv": [
+    "scripts/validate_dataset.py"
+  ],
+  "script_sha256": "bd900df4331552b4b4179cfb5e9991301f5c72108d8f8481d9938e873b110d64",
+  "manifest_sha256": "5e78de5e55351c51a4cadc9a5ecc07a6524ad92bca0c0a85851162ba7e3cbd55",
+  "quantiles": "Linear interpolation at (n-1)*p; characters=len(str); whitespace words=len(str.split()). Not model tokens.",
+  "source_integrity": [
+    {
+      "path": "sources/github_tree.json",
+      "expected_sha256": "688ce3e5e2598b1001bb256c7e638e6a198dbdfeb1b200b38c805fde2d993f75",
+      "actual_sha256": "688ce3e5e2598b1001bb256c7e638e6a198dbdfeb1b200b38c805fde2d993f75",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/README.md",
+      "expected_sha256": "4dfba7d3a2806bb7d78afcc905ff62871cff2d1e24c0f6150b23b33b61dcc302",
+      "actual_sha256": "4dfba7d3a2806bb7d78afcc905ff62871cff2d1e24c0f6150b23b33b61dcc302",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/models/baseline_classification.py",
+      "expected_sha256": "a0db5bd5989e92a2b9e7d180ead561f7a007e486a9f85449a744a53536742e7b",
+      "actual_sha256": "a0db5bd5989e92a2b9e7d180ead561f7a007e486a9f85449a744a53536742e7b",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/select_best_model.py",
+      "expected_sha256": "27de7759f4748e2505afe0e3419e2020343f53c94a33bf73394abaf9ca0b1972",
+      "actual_sha256": "27de7759f4748e2505afe0e3419e2020343f53c94a33bf73394abaf9ca0b1972",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/train_classification.sh",
+      "expected_sha256": "874b20f48ab7b2de17a50a34aa5699d6c2bf117cc01986352e752dd36d5b832f",
+      "actual_sha256": "874b20f48ab7b2de17a50a34aa5699d6c2bf117cc01986352e752dd36d5b832f",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/train_all_best.sh",
+      "expected_sha256": "709101567fa53b13a9ff10c867de309a2486f990ea19c2088487315cbaf66bcc",
+      "actual_sha256": "709101567fa53b13a9ff10c867de309a2486f990ea19c2088487315cbaf66bcc",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/duet/src/Main.elm",
+      "expected_sha256": "8993aaee5ed3abd18a8e6d47c0402399900352c8639d640d6d8976c746577b5e",
+      "actual_sha256": "8993aaee5ed3abd18a8e6d47c0402399900352c8639d640d6d8976c746577b5e",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/duet/src/User.elm",
+      "expected_sha256": "395d09318a9d669f99e0a9d699e267bc7409395e759be63b566cdfa2f41b68c7",
+      "actual_sha256": "395d09318a9d669f99e0a9d699e267bc7409395e759be63b566cdfa2f41b68c7",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/duet/src/Game.elm",
+      "expected_sha256": "9ec6a16c80f0c3810b492e856c28cb94a09993dbd1b3d3a0ba578cd5a52ce923",
+      "actual_sha256": "9ec6a16c80f0c3810b492e856c28cb94a09993dbd1b3d3a0ba578cd5a52ce923",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/duet/gameapi/handler.go",
+      "expected_sha256": "d8a3a3e880b9b67a4bb51a9b34736ed25e7c5792975ca804cfdac69c0f2c56df",
+      "actual_sha256": "d8a3a3e880b9b67a4bb51a9b34736ed25e7c5792975ca804cfdac69c0f2c56df",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/data/correct_guess_task/train.csv",
+      "expected_sha256": "365353ea03de2d98e9aad3c1f1b906fdbcbe72aa292f77db41b587b0f466f48c",
+      "actual_sha256": "365353ea03de2d98e9aad3c1f1b906fdbcbe72aa292f77db41b587b0f466f48c",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/data/correct_guess_task/val.csv",
+      "expected_sha256": "a5bcf752d81b9ff10c033d112a85b32b9cee6426eaff57fa3ab95f5d13106b9f",
+      "actual_sha256": "a5bcf752d81b9ff10c033d112a85b32b9cee6426eaff57fa3ab95f5d13106b9f",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/data/correct_guess_task/test.csv",
+      "expected_sha256": "a596a3ca1763c6bf5fe96400030847a4d704118a97c29ba7bd42016a944f411c",
+      "actual_sha256": "a596a3ca1763c6bf5fe96400030847a4d704118a97c29ba7bd42016a944f411c",
+      "matches": true
+    },
+    {
+      "path": "sources/upstream/data/correct_guess_task/all.csv",
+      "expected_sha256": "3e359d6753e9b7bae1494d533caf6340f3bbf7467b0182a50a85c2a75ab74a03",
+      "actual_sha256": "3e359d6753e9b7bae1494d533caf6340f3bbf7467b0182a50a85c2a75ab74a03",
+      "matches": true
+    },
+    {
+      "path": "sources/paper/acl_page.html",
+      "expected_sha256": "bdca948581a26190cfaa048fea742cccece1f12b1a42b5c475c36fecba94d584",
+      "actual_sha256": "bdca948581a26190cfaa048fea742cccece1f12b1a42b5c475c36fecba94d584",
+      "matches": true
+    },
+    {
+      "path": "sources/paper/2023.findings-acl.410.pdf",
+      "expected_sha256": "b001a2dc799b9d2ec7530e31bc5d84d9f50fd1230d7a92b9497636afc39a657c",
+      "actual_sha256": "b001a2dc799b9d2ec7530e31bc5d84d9f50fd1230d7a92b9497636afc39a657c",
+      "matches": true
+    }
+  ],
+  "splits": {
+    "train": {
+      "rows": 8497,
+      "columns": [
+        "",
+        "base_text",
+        "leaning_only",
+        "event_only",
+        "demo_only",
+        "personality_only",
+        "all_text",
+        "output"
+      ],
+      "stage0_expected_rows": 8497,
+      "matches_stage0_row_expectation": true,
+      "label_counts": {
+        "False": 1825,
+        "True": 6672
+      },
+      "column_audit": {
+        "": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8497,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {},
+          "train_first_value_preview": "0"
+        },
+        "base_text": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8480,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {},
+          "train_first_value_preview": "remaining: ['spot', 'charge', 'novel', 'sound', 'march', 'scientist', 'drop', 'beat', 'soul', 'green', 'field', 'boom', 'part', 'check', 'strike', 'link', 'roulette', 'row', 'disease', 'sub', 'revolution', 'fall', 'switch', 'ray', 'tag'], r"
+        },
+        "leaning_only": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8493,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 4004
+          },
+          "train_first_value_preview": "GIVER: [care: 4.0, fairness: 4.0, loyalty: 1.5, authority: 1.5, sanctity: 2.0, political: liberal], GUESSER: [care: 3.5, fairness: 3.5, loyalty: 3.5, authority: 2.5, sanctity: 3.5, political: moderate liberal], remaining: ['spot', 'charge',"
+        },
+        "event_only": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8480,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {},
+          "train_first_value_preview": "GIVER: [age: 26, gender: male, country: united states, native: true], GUESSER: [age: 39, gender: male, country: india, native: false], remaining: ['spot', 'charge', 'novel', 'sound', 'march', 'scientist', 'drop', 'beat', 'soul', 'green', 'f"
+        },
+        "demo_only": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8493,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 4004
+          },
+          "train_first_value_preview": "GIVER: [marriage: single, education: bachelor, race: white, continent: north america, language: english, religion: catholicism/christianity, age: 22 - 30], GUESSER: [marriage: single, education: bachelor, race: asian, continent: asia, langu"
+        },
+        "personality_only": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8493,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 4004
+          },
+          "train_first_value_preview": "GIVER: [conscientiousness: 3.5, extraversion: 3.0, neuroticism: 1.5, openness: 3.0, agreeableness: 3.0], GUESSER: [conscientiousness: 3.0, extraversion: 2.5, neuroticism: 2.0, openness: 2.0, agreeableness: 3.0], remaining: ['spot', 'charge'"
+        },
+        "all_text": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 8493,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 4004
+          },
+          "train_first_value_preview": "GIVER: [marriage: single, education: bachelor, race: white, continent: north america, language: english, religion: catholicism/christianity, age: 22 - 30, age: 26, gender: male, country: united states, native: true, care: 4.0, fairness: 4.0"
+        },
+        "output": {
+          "python_types": {
+            "str": 8497
+          },
+          "unique_values": 2,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {},
+          "train_first_value_preview": "False"
+        }
+      },
+      "index": {
+        "unique": 8497,
+        "consecutive_zero_based": true
+      },
+      "duplicate_checks": {
+        "full_row_including_export_index": {
+          "unique_keys": 8497,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        },
+        "full_row_excluding_export_index": {
+          "unique_keys": 8495,
+          "duplicate_groups": 2,
+          "rows_in_duplicate_groups": 4,
+          "excess_rows": 2
+        },
+        "base_text": {
+          "unique_keys": 8480,
+          "duplicate_groups": 17,
+          "rows_in_duplicate_groups": 34,
+          "excess_rows": 17
+        },
+        "personality_only": {
+          "unique_keys": 8493,
+          "duplicate_groups": 4,
+          "rows_in_duplicate_groups": 8,
+          "excess_rows": 4
+        }
+      },
+      "input_label_conflicts": {
+        "base_text": {
+          "conflicting_input_groups": 2,
+          "rows_in_conflicting_groups": 4,
+          "locations_without_input_text": [
+            {
+              "input_sha256": "d8ff4f35ce22eec03567f5cad7732696225012efe7230e868f0222e8f174c0eb",
+              "rows": [
+                {
+                  "csv_data_row_1based": 2327,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 2329,
+                  "output": "True"
+                }
+              ]
+            },
+            {
+              "input_sha256": "c6c33f1724c6ab84401dfe2e3d04aba9a47c0b933b6e7a13a9ffccaef0e77498",
+              "rows": [
+                {
+                  "csv_data_row_1based": 5746,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 5747,
+                  "output": "True"
+                }
+              ]
+            }
+          ]
+        },
+        "personality_only": {
+          "conflicting_input_groups": 2,
+          "rows_in_conflicting_groups": 4,
+          "locations_without_input_text": [
+            {
+              "input_sha256": "09da8333d31883271486d2ed39d7265ea92a08171b2168105109cc22e226f858",
+              "rows": [
+                {
+                  "csv_data_row_1based": 2327,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 2329,
+                  "output": "True"
+                }
+              ]
+            },
+            {
+              "input_sha256": "e2d8d3dde4f9bf53118767fd8b93fd0e31d3dc81c19e5912d3e89ae363fead57",
+              "rows": [
+                {
+                  "csv_data_row_1based": 5746,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 5747,
+                  "output": "True"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "length_distributions": {
+        "base_text": {
+          "characters": {
+            "min": 187,
+            "p25": 270.0,
+            "median": 287.0,
+            "p75": 302.0,
+            "p95": 319.0,
+            "p99": 331.0,
+            "max": 426,
+            "mean": 284.852
+          },
+          "whitespace_words": {
+            "min": 22,
+            "p25": 32.0,
+            "median": 34.0,
+            "p75": 35.0,
+            "p95": 37.0,
+            "p99": 39.0,
+            "max": 56,
+            "mean": 33.524
+          }
+        },
+        "personality_only": {
+          "characters": {
+            "min": 309,
+            "p25": 412.0,
+            "median": 456.0,
+            "p75": 500.0,
+            "p95": 526.0,
+            "p99": 538.0,
+            "max": 558,
+            "mean": 454.442
+          },
+          "whitespace_words": {
+            "min": 35,
+            "p25": 47.0,
+            "median": 51.0,
+            "p75": 56.0,
+            "p95": 59.0,
+            "p99": 60.0,
+            "max": 69,
+            "mean": 51.283
+          }
+        },
+        "added_personality_characters": {
+          "min": 122,
+          "p25": 122.0,
+          "median": 212.0,
+          "p75": 212.0,
+          "p95": 212.0,
+          "p99": 212.0,
+          "max": 212,
+          "mean": 169.59
+        }
+      },
+      "condition_comparison": {
+        "counts": {
+          "base_grammar_valid": 8497,
+          "personality_profile_grammar_valid": 8497,
+          "personality_base_grammar_valid": 8497,
+          "base_suffix_exact_match": 8497,
+          "parsed_remaining_equal": 8497,
+          "parsed_rationale_equal": 8497,
+          "parsed_target_equal": 8497,
+          "parsed_hint_equal": 8497,
+          "missing_profile_neither": 4493,
+          "missing_profile_guesser_only": 1872,
+          "missing_profile_giver_only": 2132
+        },
+        "exceptions": {},
+        "missing_profile_label_counts": {
+          "neither": {
+            "False": 1008,
+            "True": 3485
+          },
+          "guesser_only": {
+            "True": 1479,
+            "False": 393
+          },
+          "giver_only": {
+            "True": 1708,
+            "False": 424
+          }
+        },
+        "trait_value_counts": {
+          "giver": {
+            "conscientiousness": {
+              "3.5": 1002,
+              "3.0": 2208,
+              "1.5": 274,
+              "2.5": 379,
+              "4.0": 1865,
+              "2.0": 613,
+              "1.0": 24
+            },
+            "extraversion": {
+              "3.0": 543,
+              "2.5": 923,
+              "1.0": 693,
+              "0.0": 959,
+              "2.0": 1146,
+              "3.5": 1044,
+              "1.5": 462,
+              "0.5": 464,
+              "4.0": 131
+            },
+            "neuroticism": {
+              "1.5": 855,
+              "2.0": 844,
+              "3.0": 716,
+              "2.5": 491,
+              "1.0": 1089,
+              "3.5": 137,
+              "0.5": 1323,
+              "0.0": 848,
+              "4.0": 62
+            },
+            "openness": {
+              "3.0": 319,
+              "2.0": 1996,
+              "3.5": 618,
+              "2.5": 1726,
+              "4.0": 1017,
+              "0.5": 129,
+              "1.0": 145,
+              "1.5": 415
+            },
+            "agreeableness": {
+              "3.0": 2276,
+              "1.5": 342,
+              "2.0": 1257,
+              "1.0": 329,
+              "3.5": 1060,
+              "2.5": 820,
+              "4.0": 221,
+              "0.5": 60
+            }
+          },
+          "guesser": {
+            "conscientiousness": {
+              "3.0": 2009,
+              "3.5": 919,
+              "1.5": 265,
+              "2.0": 781,
+              "2.5": 443,
+              "4.0": 2191,
+              "1.0": 17
+            },
+            "extraversion": {
+              "2.5": 971,
+              "3.0": 581,
+              "1.0": 695,
+              "0.0": 860,
+              "2.0": 1455,
+              "3.5": 916,
+              "1.5": 581,
+              "0.5": 451,
+              "4.0": 115
+            },
+            "neuroticism": {
+              "2.0": 1069,
+              "1.5": 933,
+              "3.0": 768,
+              "2.5": 510,
+              "1.0": 1041,
+              "3.5": 124,
+              "0.5": 1265,
+              "4.0": 75,
+              "0.0": 840
+            },
+            "openness": {
+              "2.0": 2234,
+              "3.0": 445,
+              "3.5": 705,
+              "2.5": 1595,
+              "4.0": 822,
+              "0.5": 125,
+              "1.0": 221,
+              "1.5": 478
+            },
+            "agreeableness": {
+              "3.0": 2077,
+              "1.5": 410,
+              "2.5": 1070,
+              "2.0": 1384,
+              "1.0": 287,
+              "3.5": 1056,
+              "4.0": 273,
+              "0.5": 68
+            }
+          }
+        },
+        "remaining_word_count": {
+          "min": 13,
+          "p25": 21.0,
+          "median": 23.0,
+          "p75": 24.0,
+          "p95": 25.0,
+          "p99": 25.0,
+          "max": 25,
+          "mean": 22.497
+        },
+        "candidate_shared_context_groups_with_distinct_targets": 1313,
+        "candidate_shared_context_groups_with_distinct_targets_and_mixed_labels": 644
+      }
+    },
+    "val": {
+      "rows": 544,
+      "columns": [
+        "",
+        "base_text",
+        "leaning_only",
+        "event_only",
+        "demo_only",
+        "personality_only",
+        "all_text",
+        "output"
+      ],
+      "stage0_expected_rows": 544,
+      "matches_stage0_row_expectation": true,
+      "label_counts": {
+        "True": 414,
+        "False": 130
+      },
+      "column_audit": {
+        "": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 544,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "base_text": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "leaning_only": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 153
+          }
+        },
+        "event_only": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "demo_only": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 153
+          }
+        },
+        "personality_only": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 153
+          }
+        },
+        "all_text": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 540,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 153
+          }
+        },
+        "output": {
+          "python_types": {
+            "str": 544
+          },
+          "unique_values": 2,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        }
+      },
+      "index": {
+        "unique": 544,
+        "consecutive_zero_based": true
+      },
+      "duplicate_checks": {
+        "full_row_including_export_index": {
+          "unique_keys": 544,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        },
+        "full_row_excluding_export_index": {
+          "unique_keys": 542,
+          "duplicate_groups": 2,
+          "rows_in_duplicate_groups": 4,
+          "excess_rows": 2
+        },
+        "base_text": {
+          "unique_keys": 540,
+          "duplicate_groups": 4,
+          "rows_in_duplicate_groups": 8,
+          "excess_rows": 4
+        },
+        "personality_only": {
+          "unique_keys": 540,
+          "duplicate_groups": 4,
+          "rows_in_duplicate_groups": 8,
+          "excess_rows": 4
+        }
+      },
+      "input_label_conflicts": {
+        "base_text": {
+          "conflicting_input_groups": 2,
+          "rows_in_conflicting_groups": 4,
+          "locations_without_input_text": [
+            {
+              "input_sha256": "315d4ac2ee5d255189c157fdfd27eb73c93c40a9ca835eb34d47a1888d3cb189",
+              "rows": [
+                {
+                  "csv_data_row_1based": 84,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 85,
+                  "output": "True"
+                }
+              ]
+            },
+            {
+              "input_sha256": "c46152ebf9cb989f4dd8336cf4a2c8a966dd256d3f62f4f34356b2334a116214",
+              "rows": [
+                {
+                  "csv_data_row_1based": 311,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 315,
+                  "output": "True"
+                }
+              ]
+            }
+          ]
+        },
+        "personality_only": {
+          "conflicting_input_groups": 2,
+          "rows_in_conflicting_groups": 4,
+          "locations_without_input_text": [
+            {
+              "input_sha256": "b54f43144582136a3228d3eda046a9f0f56b742f205bc40562e3a7b18c2ced13",
+              "rows": [
+                {
+                  "csv_data_row_1based": 84,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 85,
+                  "output": "True"
+                }
+              ]
+            },
+            {
+              "input_sha256": "8089cbc0e7c6ae807e2086f9d6d178cfdf56f661c2eca69fdc49b29bbfb93717",
+              "rows": [
+                {
+                  "csv_data_row_1based": 311,
+                  "output": "False"
+                },
+                {
+                  "csv_data_row_1based": 315,
+                  "output": "True"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "length_distributions": {
+        "base_text": {
+          "characters": {
+            "min": 197,
+            "p25": 269.75,
+            "median": 287.5,
+            "p75": 302.0,
+            "p95": 318.0,
+            "p99": 334.57,
+            "max": 346,
+            "mean": 285.18
+          },
+          "whitespace_words": {
+            "min": 25,
+            "p25": 32.0,
+            "median": 34.0,
+            "p75": 35.0,
+            "p95": 37.0,
+            "p99": 38.57,
+            "max": 40,
+            "mean": 33.625
+          }
+        },
+        "personality_only": {
+          "characters": {
+            "min": 353,
+            "p25": 433.0,
+            "median": 485.0,
+            "p75": 508.0,
+            "p95": 527.85,
+            "p99": 539.57,
+            "max": 558,
+            "mean": 471.868
+          },
+          "whitespace_words": {
+            "min": 41,
+            "p25": 49.0,
+            "median": 55.0,
+            "p75": 57.0,
+            "p95": 59.0,
+            "p99": 60.0,
+            "max": 61,
+            "mean": 53.094
+          }
+        },
+        "added_personality_characters": {
+          "min": 122,
+          "p25": 122.0,
+          "median": 212.0,
+          "p75": 212.0,
+          "p95": 212.0,
+          "p99": 212.0,
+          "max": 212,
+          "mean": 186.688
+        }
+      },
+      "condition_comparison": {
+        "counts": {
+          "base_grammar_valid": 544,
+          "personality_profile_grammar_valid": 544,
+          "personality_base_grammar_valid": 544,
+          "base_suffix_exact_match": 544,
+          "parsed_remaining_equal": 544,
+          "parsed_rationale_equal": 544,
+          "parsed_target_equal": 544,
+          "parsed_hint_equal": 544,
+          "missing_profile_guesser_only": 153,
+          "missing_profile_neither": 391
+        },
+        "exceptions": {},
+        "missing_profile_label_counts": {
+          "guesser_only": {
+            "True": 119,
+            "False": 34
+          },
+          "neither": {
+            "False": 96,
+            "True": 295
+          }
+        },
+        "trait_value_counts": {
+          "giver": {
+            "conscientiousness": {
+              "2.0": 113,
+              "2.5": 96,
+              "4.0": 280,
+              "3.0": 42,
+              "3.5": 13
+            },
+            "extraversion": {
+              "2.0": 189,
+              "3.0": 82,
+              "1.5": 103,
+              "2.5": 44,
+              "3.5": 118,
+              "1.0": 8
+            },
+            "neuroticism": {
+              "2.0": 129,
+              "2.5": 69,
+              "4.0": 13,
+              "3.0": 77,
+              "1.5": 125,
+              "0.0": 113,
+              "1.0": 13,
+              "0.5": 5
+            },
+            "openness": {
+              "3.0": 100,
+              "2.5": 81,
+              "3.5": 18,
+              "1.0": 77,
+              "2.0": 255,
+              "1.5": 13
+            },
+            "agreeableness": {
+              "2.5": 246,
+              "1.0": 13,
+              "4.0": 42,
+              "3.0": 95,
+              "3.5": 108,
+              "1.5": 40
+            }
+          },
+          "guesser": {
+            "conscientiousness": {
+              "3.0": 145,
+              "4.0": 161,
+              "3.5": 66,
+              "2.0": 12,
+              "2.5": 7
+            },
+            "extraversion": {
+              "3.5": 117,
+              "2.0": 59,
+              "0.0": 36,
+              "1.0": 41,
+              "3.0": 37,
+              "1.5": 20,
+              "2.5": 64,
+              "0.5": 12,
+              "4.0": 5
+            },
+            "neuroticism": {
+              "1.0": 83,
+              "3.0": 23,
+              "2.5": 20,
+              "0.0": 102,
+              "0.5": 98,
+              "1.5": 40,
+              "2.0": 21,
+              "3.5": 4
+            },
+            "openness": {
+              "4.0": 60,
+              "3.5": 11,
+              "2.0": 163,
+              "2.5": 116,
+              "3.0": 12,
+              "1.5": 29
+            },
+            "agreeableness": {
+              "3.0": 135,
+              "1.0": 22,
+              "3.5": 125,
+              "0.5": 9,
+              "2.5": 52,
+              "2.0": 25,
+              "1.5": 18,
+              "4.0": 5
+            }
+          }
+        },
+        "remaining_word_count": {
+          "min": 13,
+          "p25": 21.0,
+          "median": 23.0,
+          "p75": 25.0,
+          "p95": 25.0,
+          "p99": 25.0,
+          "max": 25,
+          "mean": 22.597
+        },
+        "candidate_shared_context_groups_with_distinct_targets": 82,
+        "candidate_shared_context_groups_with_distinct_targets_and_mixed_labels": 45
+      }
+    },
+    "test": {
+      "rows": 478,
+      "columns": [
+        "",
+        "base_text",
+        "leaning_only",
+        "event_only",
+        "demo_only",
+        "personality_only",
+        "all_text",
+        "output"
+      ],
+      "stage0_expected_rows": 478,
+      "matches_stage0_row_expectation": true,
+      "label_counts": {
+        "False": 109,
+        "True": 369
+      },
+      "column_audit": {
+        "": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "base_text": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "leaning_only": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 100
+          }
+        },
+        "event_only": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        },
+        "demo_only": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 100
+          }
+        },
+        "personality_only": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 100
+          }
+        },
+        "all_text": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 478,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {
+            "None": 100
+          }
+        },
+        "output": {
+          "python_types": {
+            "str": 478
+          },
+          "unique_values": 2,
+          "structurally_absent_fields": 0,
+          "empty_strings": 0,
+          "whitespace_only_strings": 0,
+          "exact_sentinel_values": {},
+          "rows_with_embedded_sentinels": {}
+        }
+      },
+      "index": {
+        "unique": 478,
+        "consecutive_zero_based": true
+      },
+      "duplicate_checks": {
+        "full_row_including_export_index": {
+          "unique_keys": 478,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        },
+        "full_row_excluding_export_index": {
+          "unique_keys": 478,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        },
+        "base_text": {
+          "unique_keys": 478,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        },
+        "personality_only": {
+          "unique_keys": 478,
+          "duplicate_groups": 0,
+          "rows_in_duplicate_groups": 0,
+          "excess_rows": 0
+        }
+      },
+      "input_label_conflicts": {
+        "base_text": {
+          "conflicting_input_groups": 0,
+          "rows_in_conflicting_groups": 0,
+          "locations_without_input_text": []
+        },
+        "personality_only": {
+          "conflicting_input_groups": 0,
+          "rows_in_conflicting_groups": 0,
+          "locations_without_input_text": []
+        }
+      },
+      "length_distributions": {
+        "base_text": {
+          "characters": {
+            "min": 205,
+            "p25": 269.25,
+            "median": 286.0,
+            "p75": 299.0,
+            "p95": 317.0,
+            "p99": 324.23,
+            "max": 330,
+            "mean": 283.571
+          },
+          "whitespace_words": {
+            "min": 26,
+            "p25": 32.0,
+            "median": 34.0,
+            "p75": 35.0,
+            "p95": 37.0,
+            "p99": 38.0,
+            "max": 40,
+            "mean": 33.554
+          }
+        },
+        "personality_only": {
+          "characters": {
+            "min": 347,
+            "p25": 457.25,
+            "median": 490.5,
+            "p75": 507.75,
+            "p95": 526.15,
+            "p99": 536.23,
+            "max": 542,
+            "mean": 476.743
+          },
+          "whitespace_words": {
+            "min": 40,
+            "p25": 51.0,
+            "median": 55.0,
+            "p75": 57.0,
+            "p95": 59.0,
+            "p99": 60.0,
+            "max": 61,
+            "mean": 53.672
+          }
+        },
+        "added_personality_characters": {
+          "min": 122,
+          "p25": 212.0,
+          "median": 212.0,
+          "p75": 212.0,
+          "p95": 212.0,
+          "p99": 212.0,
+          "max": 212,
+          "mean": 193.172
+        }
+      },
+      "condition_comparison": {
+        "counts": {
+          "base_grammar_valid": 478,
+          "personality_profile_grammar_valid": 478,
+          "personality_base_grammar_valid": 478,
+          "base_suffix_exact_match": 478,
+          "parsed_remaining_equal": 478,
+          "parsed_rationale_equal": 478,
+          "parsed_target_equal": 478,
+          "parsed_hint_equal": 478,
+          "missing_profile_neither": 378,
+          "missing_profile_guesser_only": 100
+        },
+        "exceptions": {},
+        "missing_profile_label_counts": {
+          "neither": {
+            "False": 85,
+            "True": 293
+          },
+          "guesser_only": {
+            "True": 76,
+            "False": 24
+          }
+        },
+        "trait_value_counts": {
+          "giver": {
+            "conscientiousness": {
+              "3.0": 85,
+              "4.0": 284,
+              "3.5": 40,
+              "1.5": 9,
+              "2.0": 60
+            },
+            "extraversion": {
+              "2.0": 166,
+              "1.0": 7,
+              "1.5": 24,
+              "0.0": 24,
+              "2.5": 108,
+              "0.5": 21,
+              "3.0": 8,
+              "3.5": 120
+            },
+            "neuroticism": {
+              "2.0": 147,
+              "1.0": 178,
+              "2.5": 34,
+              "1.5": 66,
+              "3.5": 15,
+              "3.0": 21,
+              "0.5": 17
+            },
+            "openness": {
+              "2.0": 193,
+              "4.0": 82,
+              "1.5": 50,
+              "3.0": 24,
+              "3.5": 122,
+              "2.5": 7
+            },
+            "agreeableness": {
+              "2.0": 62,
+              "3.0": 66,
+              "2.5": 138,
+              "0.5": 24,
+              "3.5": 136,
+              "1.5": 52
+            }
+          },
+          "guesser": {
+            "conscientiousness": {
+              "3.5": 74,
+              "3.0": 110,
+              "2.5": 20,
+              "2.0": 28,
+              "4.0": 137,
+              "1.5": 9
+            },
+            "extraversion": {
+              "0.0": 68,
+              "4.0": 7,
+              "3.0": 53,
+              "1.5": 15,
+              "3.5": 162,
+              "0.5": 34,
+              "2.0": 14,
+              "1.0": 7,
+              "2.5": 18
+            },
+            "neuroticism": {
+              "2.5": 26,
+              "3.0": 71,
+              "0.5": 102,
+              "1.5": 54,
+              "0.0": 74,
+              "1.0": 42,
+              "2.0": 9
+            },
+            "openness": {
+              "3.5": 21,
+              "2.5": 96,
+              "4.0": 70,
+              "3.0": 25,
+              "2.0": 159,
+              "1.0": 7
+            },
+            "agreeableness": {
+              "3.5": 107,
+              "3.0": 162,
+              "2.5": 46,
+              "2.0": 16,
+              "1.0": 14,
+              "1.5": 20,
+              "0.5": 8,
+              "4.0": 5
+            }
+          }
+        },
+        "remaining_word_count": {
+          "min": 14,
+          "p25": 21.0,
+          "median": 23.0,
+          "p75": 24.0,
+          "p95": 25.0,
+          "p99": 25.0,
+          "max": 25,
+          "mean": 22.473
+        },
+        "candidate_shared_context_groups_with_distinct_targets": 94,
+        "candidate_shared_context_groups_with_distinct_targets_and_mixed_labels": 44
+      }
+    }
+  },
+  "between_splits": {
+    "train__val": {
+      "full_row_including_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "full_row_excluding_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "base_text": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      },
+      "personality_only": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      }
+    },
+    "train__test": {
+      "full_row_including_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "full_row_excluding_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "base_text": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      },
+      "personality_only": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      }
+    },
+    "val__test": {
+      "full_row_including_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "full_row_excluding_export_index": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0
+      },
+      "base_text": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      },
+      "personality_only": {
+        "shared_unique_keys": 0,
+        "rows_in_first": 0,
+        "rows_in_second": 0,
+        "cross_split_row_pairs": 0,
+        "shared_inputs_with_differing_labels_across_splits": 0
+      }
+    }
+  },
+  "combined_input_label_conflicts": {
+    "base_text": {
+      "conflicting_input_groups": 4,
+      "rows_in_conflicting_groups": 8
+    },
+    "personality_only": {
+      "conflicting_input_groups": 4,
+      "rows_in_conflicting_groups": 8
+    }
+  },
+  "all_csv_consistency": {
+    "rows": 9519,
+    "split_rows": 9519,
+    "multiset_equal_excluding_export_index": true,
+    "extra_in_all": 0,
+    "extra_in_splits": 0,
+    "note": "all.csv is a consistency reference, never an additional split."
+  },
+  "checks": {
+    "source_hashes_match": true,
+    "expected_labels_only": true,
+    "all_condition_pairs_valid": true,
+    "all_csv_matches_split_union": true
+  }
+}
