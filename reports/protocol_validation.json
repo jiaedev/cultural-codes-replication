@@ -1,0 +1,111 @@
+{
+  "generated_at_utc": "2026-11-17T08:03:41.723327+00:00",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "scope": "CPU synthetic/tiny only; research data files hashed but not tokenized or trained; no Test predictions.",
+  "paired_seed_checks": [
+    {
+      "seed": 13,
+      "all_initial_parameters_equal": true,
+      "head_parameters_equal": true,
+      "initial_head_sha256": "e9717a7eeda47b71c50dd929f3070035b4e7fdfc1e0d4d60c57010cd969b4f56",
+      "epoch_orders_equal": true,
+      "every_case_seen_each_epoch": true,
+      "order_hashes": [
+        "99d771c753a49a5677e7bb1417b59b9c7432872ed6f74f933996e6c16ac15dfe",
+        "bfdc044eac943e2bb74440cb5a43c266e75ad14a3a96ec806da70e9951eede83"
+      ]
+    },
+    {
+      "seed": 37,
+      "all_initial_parameters_equal": true,
+      "head_parameters_equal": true,
+      "initial_head_sha256": "9bef74d7a12604649eb8cc4a7abd559a5170e5a7e20367a81be33febc7f8aaa0",
+      "epoch_orders_equal": true,
+      "every_case_seen_each_epoch": true,
+      "order_hashes": [
+        "16f2dc7e69b641739dd259ef71ed36da64da16d51e956ebdb0707cb4bca0dc2d",
+        "96ea6f2af6693acab186ecbee29c9712d3c9d6cdfeabaacdaacca54cf283e31d"
+      ]
+    },
+    {
+      "seed": 73,
+      "all_initial_parameters_equal": true,
+      "head_parameters_equal": true,
+      "initial_head_sha256": "031fc6687bf8152f09dce7caff3d87715851268becf516a9dc65def9272f6dad",
+      "epoch_orders_equal": true,
+      "every_case_seen_each_epoch": true,
+      "order_hashes": [
+        "a654b2573f82886ade4115f5205e68e7a181264828114267a683e243608fe50e",
+        "32bc76fe2305b856d820cd04e5faaf3bb60205d516f0dbd7192dc65c91557e05"
+      ]
+    },
+    {
+      "seed": 109,
+      "all_initial_parameters_equal": true,
+      "head_parameters_equal": true,
+      "initial_head_sha256": "34d1189ec9b14067e1b261c364444ba064b32290ae1a8c3ef69ad7185b16fac8",
+      "epoch_orders_equal": true,
+      "every_case_seen_each_epoch": true,
+      "order_hashes": [
+        "e467d540c2c754256a99044dac2c76e61bae2271488b689f17538a533d9b6f44",
+        "33b2428435aeb95791ebe47eb162fe2809418e40b51613eca3327e4885ae4d0b"
+      ]
+    },
+    {
+      "seed": 149,
+      "all_initial_parameters_equal": true,
+      "head_parameters_equal": true,
+      "initial_head_sha256": "9c7d871127e1d158c508bb3effa2b4e6514ae9fa307c297668e66b0d0e970bf9",
+      "epoch_orders_equal": true,
+      "every_case_seen_each_epoch": true,
+      "order_hashes": [
+        "38e8fa86498320ee6b6dfa3a940f4b211ee805de975be4bbf8e24c44a20c5337",
+        "914bd7a6d8aaed6eb3d28d220da1d5de2749c2996753b0cc007540217ea222ef"
+      ]
+    }
+  ],
+  "synthetic_optimizer_steps": 2,
+  "technical_overrides": {
+    "device": "cpu",
+    "model": "random tiny",
+    "examples": 35,
+    "epochs": 1,
+    "output": "ignored artifacts/protocol_dry_run/cc-fixed-v1.0.1",
+    "progress_display": false
+  },
+  "exact_tie_keeps_earliest": true,
+  "evaluation_partial_batch_sizes": [
+    5
+  ],
+  "optimizer_defaults": {
+    "lr": 5e-06,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": false,
+    "capturable": false,
+    "differentiable": false,
+    "fused": false,
+    "decoupled_weight_decay": true
+  },
+  "scheduler": "LambdaLR",
+  "trainer_predicted_updates_per_epoch": 266,
+  "trainer_predicted_updates_per_run": 3990,
+  "full_model_structural_parameter_count": 124647170,
+  "full_model_execution_validated": false,
+  "research_activation_blocked": true,
+  "gpu_validated": false,
+  "pretrained_weights_downloaded": false,
+  "case_ids_unique_478": true,
+  "synthetic_token_overflow_rejected": true,
+  "different_seeds_initialize_different_heads": true,
+  "old_adapter_files_modified": false,
+  "script_sha256": "e61214a0efb06e17a699d5d131300bbe21ee9a3e7094288a244cf0c7fbc8e201",
+  "bridge_sha256": "c5e044c2700fc1cfcb1c5a6fd1cdf03dfbca2be01263a76a6e50064a2e0e07a7"
+}

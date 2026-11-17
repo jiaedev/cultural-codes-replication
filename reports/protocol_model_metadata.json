@@ -1,0 +1,27 @@
+{
+  "url": "https://huggingface.co/api/models/FacebookAI/roberta-base/revision/e2da8e2f811d1448a5b465c236feacd80ffbac7b?blobs=true",
+  "repository": "FacebookAI/roberta-base",
+  "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "files": [
+    {
+      "rfilename": "config.json",
+      "blobId": "8db5e7ac5bfc9ec8b613b776009300fe3685d957",
+      "size": 481
+    },
+    {
+      "rfilename": "model.safetensors",
+      "blobId": "ef5b64ef432a25ec7b377679a208753ee7dbce48",
+      "size": 498818054,
+      "lfs": {
+        "sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+        "size": 498818054,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "ad0bcbeb288f0d1373d88e0762e66357f55b8311",
+      "size": 1355863
+    }
+  ]
+}

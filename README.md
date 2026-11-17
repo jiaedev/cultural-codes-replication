@@ -4,7 +4,7 @@ Replication of the target-level success-prediction task in Shaikh et al., [*Mode
 
 **Research question:** Does adding giver and guesser personality information improve prediction of intentional guessing success on the released Cultural Codes examples?
 
-**Status:** Dataset validation and CPU, single-process implementation checks are complete (Stages 2-3). Experimental decisions are pending; the protocol is not yet frozen. No research-data training, A/B performance comparison, Test predictions, or pretrained-weight download has been performed. GPU execution and full-size model resource requirements remain unverified.
+**Status:** Dataset validation and CPU, single-process implementation checks are complete (Stages 2-3). The fixed-settings protocol design is specified; execution freeze and GPU/runner gates remain pending. No research-data training, A/B performance comparison, Test predictions, or pretrained-weight download has been performed. GPU execution and full-size model resource requirements remain unverified.
 
 ## Comparison design
 
@@ -16,7 +16,7 @@ The project uses the official preprocessed `correct_guess_task` splits without c
 | Condition B | `personality_only`: giver/guesser personality profiles, followed by the same base input |
 | Model candidate | `FacebookAI/roberta-base`, [pinned revision and configuration](configs/model_candidate.json) |
 | Primary metric | Macro-F1 across failure and success |
-| Planned repetition | Five runs per condition; seeds and training/selection settings remain open |
+| Planned repetition | Five paired seeds; fixed settings specified in the [protocol](docs/experimental_protocol.md) |
 
 The classifier receives the intended target and giver rationale, which are hidden from the human guesser. This is success prediction with privileged information, rather than a model of the guesser's information state.
 
@@ -24,6 +24,7 @@ The classifier receives the intended target and giver rationale, which are hidde
 
 - **Paired data:** All 9,519 examples share the same label and exact base content across A/B. Train/Validation/Test contain 8,497/544/478 rows. Missing profiles, duplicates and conflicting labels were recorded and preserved; no exact input overlap was found across splits.
 - **Labels and metrics:** Explicit `False -> 0` / `True -> 1` conversion preserves split distributions. Five known-answer synthetic fixtures verify two-class Macro-F1 and distinguish it from accuracy.
+- **Accumulation:** Protocol v1.0.1 normalizes loss by the actual group example count, including [8,8,1]. Synthetic regression checks cover gradients, clipping and checkpoint recovery in separate CPU processes.
 - **Selection and coverage:** A separate adapter connects `eval_validation_macro_f1` to checkpoint selection, excludes Test from the development builder, and preserves final incomplete evaluation batches under the tested configuration.
 - **Tokenizer and execution:** The pinned tokenizer preserves all Train/Validation inputs at its 512-token capacity (maximum observed: 197, including special tokens). A small randomly initialized RoBERTa completes synthetic forward/loss, two optimizer steps, evaluation, checkpoint selection, save and reload on CPU.
 
@@ -42,6 +43,8 @@ $env:PIP_CACHE_DIR = Join-Path (Get-Location) '.cache\pip'
 .\.venv\Scripts\python.exe scripts/audit_labels.py
 .\.venv\Scripts\python.exe scripts/audit_tokenization.py
 .\.venv\Scripts\python.exe scripts/smoke_test.py --device cpu
+.\.venv\Scripts\python.exe scripts/validate_protocol.py
+.\.venv\Scripts\python.exe scripts/validate_accumulation.py
 ```
 
 Check that `python --version` reports Python 3.11 before creating the environment. Restoration retrieves omitted data/tokenizer files from recorded URLs and verifies their hashes without replacing different existing bytes. Later checks use local inputs. The smoke test uses invented examples and random tiny-model weights.
@@ -52,7 +55,7 @@ See [environment setup and troubleshooting](environment/README.md) for interpret
 
 Raw guesses, participant/game/turn IDs, and the original data-construction pipeline are unavailable in the inspected release. Labels cannot be regenerated, participant-level split separation cannot be independently checked, and personality score construction remains unverified. The executable model candidate has not been established as the exact original checkpoint.
 
-Any future predictive gain would not establish a causal personality effect or equivalence to human cognitive processes. [Methods mapping](docs/methods_mapping.md) distinguishes the paper, public artifacts and this implementation. The [roadmap](ROADMAP.md) and [draft experimental protocol](docs/experimental_protocol.md) describe the remaining work.
+Any future predictive gain would not establish a causal personality effect or equivalence to human cognitive processes. [Methods mapping](docs/methods_mapping.md) distinguishes the paper, public artifacts and this implementation. The [roadmap](ROADMAP.md) and [recommended experimental protocol](docs/experimental_protocol.md) describe the remaining work.
 
 ## Repository guide
 

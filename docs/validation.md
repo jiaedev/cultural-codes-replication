@@ -6,7 +6,7 @@ The recorded checks establish two things: the released A/B fields describe the s
 
 **Evidence date: 2026-11-17.** The retained dataset audit is timestamped 05:35:38 UTC, tokenizer audit 05:27:43 UTC and CPU smoke 05:36:55 UTC. Exact timestamps, versions, hashes and settings remain in the linked JSON. This document consolidates those existing findings; consolidation did not rerun the analyses or change their dates/results.
 
-Dataset validation is complete; implementation compatibility is verified for one CPU process. The [draft experimental protocol](experimental_protocol.md) remains unfrozen.
+Dataset validation is complete; implementation compatibility is verified for one CPU process. The [recommended experimental protocol](experimental_protocol.md) now specifies the design; execution freeze remains pending.
 
 ## 2. Data validation
 
@@ -133,4 +133,36 @@ Follow [environment setup](../environment/README.md) to install the pinned stack
 .\.venv\Scripts\python.exe scripts/smoke_test.py --device cpu
 ```
 
-The [source manifest](../sources/manifest.json), [environment lock](../environment/requirements-win-cpu.lock.txt), [environment summary](../reports/environment_summary.json), [dependency artifacts](../reports/dependency_artifacts.json) and [public validation summary](../reports/research_validation_summary.json) preserve provenance and recorded evidence. The publication summaries derive from unchanged original records; local operational diagnostics are excluded from the public artifact set. The [draft protocol](experimental_protocol.md) separates pending research decisions from these executed checks.
+The [source manifest](../sources/manifest.json), [environment lock](../environment/requirements-win-cpu.lock.txt), [environment summary](../reports/environment_summary.json), [dependency artifacts](../reports/dependency_artifacts.json) and [public validation summary](../reports/research_validation_summary.json) preserve provenance and recorded evidence. The publication summaries derive from unchanged original records; local operational diagnostics are excluded from the public artifact set. The [recommended protocol](experimental_protocol.md) separates specified scientific choices and pending activation gates from executed checks.
+
+## 8. Protocol configuration checks
+
+A separate CPU check on 2026-11-17 resolved the recommended configuration through the installed Trainer. It was rerun for the v1.0.1 correction; [protocol_validation.json](../reports/protocol_validation.json) records the exact timestamp/configuration/code hashes. This is additional synthetic evidence and does not replace the original reports above.
+
+For seeds 13, 37, 73, 109 and 149, A/B loaded the same tiny random initialization snapshot. Entire parameter/head hashes matched within each pair, while different seeds produced different heads. Actual seedable DataLoaders preserved all 35 invented examples and matched two epoch orders across conditions despite deliberately differing global RNG consumption. The original data were only hashed, not tokenized or trained in this check.
+
+One tiny synthetic model completed two optimizer updates with the specified AdamW/accumulation settings (technical override: one epoch on 35 invented cases, CPU, tiny dimensions and ignored output paths). Exact-score ties retained the earliest best, a partial evaluation batch of five was included, and an invented overlength input was rejected before silent truncation. Stable-ID generation produced 478 unique IDs without reading or predicting Test cases.
+
+The installed Trainer's step calculation agrees with 266 updates/epoch and 3,990 per planned run. A full-size configuration was instantiated on a meta device only to count 124,647,170 parameters; no full-model forward/backward, pretrained download, GPU memory test or wall-time estimate was validated. Research activation remains explicitly blocked. The earlier adapter and CPU lock are unchanged.
+
+[Resolved arguments](../reports/resolved_protocol_arguments.json) include library defaults for the ten planned run identities on CPU; [execution plan](../reports/experimental_run_plan.json) records the arithmetic budget. The [model metadata](../reports/protocol_model_metadata.json) verifies the pinned source weight file's advertised SHA-256/size without downloading it. GPU environment and research-runner checks remain required before Stage 5.
+
+## 9. Accumulation normalization and recovery regression
+
+Independent review reproduced a v1.0.0 error in the final accumulation group [8,8,1]: averaging three micro-batch means assigned the single last case eight times the coefficient of another case in the same update. The earlier 35-case fixture ended in a single [3] micro-batch and could not expose unequal sizes within a group. No research data had been trained. The [pre-fix manifest](../reports/history/cc-fixed-v1.0.0/manifest.json) preserves the old configuration, code and reports unchanged.
+
+Version 1.0.1 supplies summed CE divided by the actual accumulated example count through Trainer's custom loss interface. A missing count raises an error. The [regression script](../scripts/validate_accumulation.py) and [machine-readable results](../reports/accumulation_validation.json) record the following executed CPU checks:
+
+| Check | Result |
+| --- | --- |
+| Groups [8,8,8,8], [8,8,1], [3] | Counts 32, 17, 3; all 25 parameter-gradient tensors match a single-batch mean CE reference within rtol=2e-5, atol=2e-7. Maximum absolute difference across fixtures is 2.24e-8. Dropout is disabled only for this analytic comparison. |
+| Negative control | Restoring the pre-fix mean-of-means path produces a maximum gradient discrepancy of about 0.27451 for [8,8,1]; the regression detects the original error. |
+| Complete 49-case epochs | Each case appears once per epoch; three epochs produce six optimizer updates. Groups carry denominator 32 or 17, with no epoch-boundary carry-over. |
+| Clipping and schedule | Norm-1 clipping actually activates, once after each full accumulated group and before optimization. The linear schedule advances once per update and reaches zero at update six. |
+| Evaluation | Nine invented cases yield batches [8,1]; evaluation loss matches the full-case mean CE within 2e-6. |
+| Selection and reload | Constant 0.8 selection scores retain and reload the first epoch's checkpoint. These scores are injected technical fixtures, not model results. |
+| Resume in a fresh process | Starting from the first complete epoch checkpoint preserves remaining case orders and steps; final parameter maximum difference is 0.0 and optimizer/scheduler states match continuous execution exactly. |
+
+Integration fixtures use random tiny RoBERTa (vocabulary 64), invented seven-token inputs, seed 13, dropout 0.1 and deliberately wrong initial classification biases [-4,4] on class-0 labels to exercise clipping. The three-epoch duration, reduced architecture, biases, constant metric and CPU execution are explicit test overrides, not amendments to the research settings. No research text is tokenized or trained; split files are only hashed. No Test predictions, pretrained download, full-size model execution or GPU validation occurs.
+
+Run `.\.venv\Scripts\python.exe scripts/validate_accumulation.py` from the project root. Each invocation uses a new ignored artifact directory; results include the protocol/code hashes and exact versions. The planned research counts remain 266 updates per epoch, 3,990 per run and 39,900 across ten runs. This regression establishes CPU behavior for the correction; execution activation still requires the protocol's GPU and runner gates.

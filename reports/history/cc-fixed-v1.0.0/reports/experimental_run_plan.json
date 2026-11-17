@@ -1,0 +1,109 @@
+{
+  "protocol_id": "cc-fixed-v1.0.0",
+  "hyperparameter_search_runs": 0,
+  "runs": [
+    {
+      "run_id": "cc-fixed-v1.0.0-A-s13",
+      "seed": 13,
+      "condition": "A",
+      "input_column": "base_text",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-A-s13",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-13",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-B-s13",
+      "seed": 13,
+      "condition": "B",
+      "input_column": "personality_only",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-B-s13",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-13",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-B-s37",
+      "seed": 37,
+      "condition": "B",
+      "input_column": "personality_only",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-B-s37",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-37",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-A-s37",
+      "seed": 37,
+      "condition": "A",
+      "input_column": "base_text",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-A-s37",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-37",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-A-s73",
+      "seed": 73,
+      "condition": "A",
+      "input_column": "base_text",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-A-s73",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-73",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-B-s73",
+      "seed": 73,
+      "condition": "B",
+      "input_column": "personality_only",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-B-s73",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-73",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-B-s109",
+      "seed": 109,
+      "condition": "B",
+      "input_column": "personality_only",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-B-s109",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-109",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-A-s109",
+      "seed": 109,
+      "condition": "A",
+      "input_column": "base_text",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-A-s109",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-109",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-A-s149",
+      "seed": 149,
+      "condition": "A",
+      "input_column": "base_text",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-A-s149",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-149",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    },
+    {
+      "run_id": "cc-fixed-v1.0.0-B-s149",
+      "seed": 149,
+      "condition": "B",
+      "input_column": "personality_only",
+      "output_directory": "artifacts/experiments/cc-fixed-v1.0.0/runs/cc-fixed-v1.0.0-B-s149",
+      "initial_snapshot": "artifacts/experiments/cc-fixed-v1.0.0/initializations/seed-149",
+      "final_test_status": "not run; wait for locked selection of all 10 models"
+    }
+  ],
+  "initialization_snapshots": 5,
+  "train_microbatches_per_epoch": 1063,
+  "optimizer_updates_per_epoch": 266,
+  "optimizer_updates_per_run": 3990,
+  "optimizer_updates_all_runs": 39900,
+  "training_example_presentations": 1274550,
+  "validation_calls": 150,
+  "final_test_calls": 10,
+  "validation_example_evaluations": 81600,
+  "final_test_example_evaluations": 4780,
+  "nominal_effective_batch": 32,
+  "last_update_examples_per_epoch": 17,
+  "wall_time_measured": false
+}

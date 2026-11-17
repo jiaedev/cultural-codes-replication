@@ -1,0 +1,30 @@
+{
+  "archived_at_utc": "2026-11-17T07:59:12.962772+00:00",
+  "purpose": "Exact pre-fix v1.0.0 configuration, implementation and synthetic evidence. Historical snapshot only; unequal final micro-batches used a mean of batch means. No research runs were performed. Active files are at project root.",
+  "files": [
+    {
+      "original_path": "configs/experimental_protocol.v1.json",
+      "sha256": "99aa2a97cb1ba1ccdc98437b4b2bbde4665b70a5f4a8036011f6a87b0dd6ffa6"
+    },
+    {
+      "original_path": "src/cultural_codes/protocol.py",
+      "sha256": "24c709fa584a0d49f9baf1fbc976c22967792472627d9ca28434ab3f96724b86"
+    },
+    {
+      "original_path": "scripts/validate_protocol.py",
+      "sha256": "45b65ee2be270aa184995ac6db675f6b6de981d3e3b4593006d9a9d78dc07037"
+    },
+    {
+      "original_path": "reports/protocol_validation.json",
+      "sha256": "757d3da733c713d6c78d911865592da5139d680e122a80b64cf9f003a61d5227"
+    },
+    {
+      "original_path": "reports/experimental_run_plan.json",
+      "sha256": "d2c386a1102dbf67c0dffde7382daa726ae9f493f678d33a783af934672a0ce3"
+    },
+    {
+      "original_path": "reports/resolved_protocol_arguments.json",
+      "sha256": "2ad216c34dbd931435521b35f6ae8621c150333a16a03bb6bf2185c6040b9462"
+    }
+  ]
+}

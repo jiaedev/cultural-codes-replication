@@ -72,3 +72,11 @@ The host has an RTX 5080 Laptop GPU (16,303 MiB reported VRAM, driver 592.27), b
 Public reports retain scientific checks, package versions and artifact provenance. Raw interpreter paths, installation transcripts, machine-specific operational history and the original aggregate record remain local and ignored. No raw result, source manifest or data file is edited for publication.
 
 `scripts/capture_environment.py` captures local diagnostics and the installed lock. When publishing an existing verification snapshot, `python scripts/prepare_public_reports.py` derives the path-free environment/dependency/validation summaries from the local records. It does not rerun experiments. A fresh checkout already contains these public summaries; recapturing and replacing an evidence snapshot is unnecessary for running the checks.
+
+## Protocol target environment
+
+The recommended main-experiment target is a separate Linux x86_64, single NVIDIA GPU environment with CPython 3.11.17, torch 2.9.1+cu128 and the same core Transformers/Accelerate/metric versions. This is not an installed or validated GPU lock. Preserve the verified Windows CPU specification. Before research runs, record the target's complete installed lock and run the full-size synthetic preflight specified in the [protocol](../docs/experimental_protocol.md), including FP32/eager micro-batch 8, length 512 and four-way accumulation. No Windows CUDA reinstall or security-policy change was made during protocol design.
+
+`python scripts/validate_protocol.py` uses the existing CPU environment to resolve/test settings with tiny random models and invented inputs only. It does not provide a research training CLI or establish GPU readiness.
+
+The v1.0.1 loss correction is checked with `python scripts/validate_accumulation.py`. It uses invented inputs and tiny random models on CPU, compares accumulated gradients against a whole-group mean loss, exercises clipping and resumes a complete epoch checkpoint in a separate process. Results are in [accumulation validation](../reports/accumulation_validation.json); these checks do not validate GPU or full-model execution.
