@@ -27,3 +27,8 @@ scripts/execute_plan.py -text
 
 scripts/audit_stage5_results.py -text
 scripts/export_stage5_provenance.py text eol=lf
+
+# Restore checks verify the source snapshot against upstream file bytes.
+sources/github_tree.json -text
+sources/upstream/** -text
+sources/paper/** -text

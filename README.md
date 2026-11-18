@@ -1,71 +1,40 @@
 # Cultural Codes replication
 
-Replication of the target-level success-prediction task in Shaikh et al., [*Modeling Cross-Cultural Pragmatic Inference with Codenames Duet*](https://aclanthology.org/2023.findings-acl.410/) (Findings of ACL, 2023).
+Does adding giver and guesser personality information help predict whether a guesser selects an intended target? This project tests one comparison from the *Predicting Pragmatic Success* task (§4.3) in Shaikh et al. (Findings of ACL 2023). [ACL paper](https://aclanthology.org/2023.findings-acl.410/) · [Research report](docs/research_report.md)
 
-**Research question:** Does adding giver and guesser personality information improve prediction of intentional guessing success on the released Cultural Codes examples?
+The same pinned RoBERTa-base candidate was trained on the released splits with five paired seeds. **A** used the board words, giver rationale, target and clue. **B** prepended the released personality profiles to that same input. Each checkpoint was selected on Validation and evaluated on the same 478 Test rows. [Protocol](docs/experimental_protocol.md)
 
-**Status:** The fixed ten-run local GPU experiment and final Test evaluation are complete. All ten fits, 4,780 Test predictions and the independent result audit passed. A recorded final-evaluation label-conversion error was corrected without changing training or checkpoint selection. See [executed results](docs/stage5_training_evaluation.md).
+## Results
 
-## Comparison design
+| Test metric | A · base | B · profiles + base |
+| --- | ---: | ---: |
+| Macro-F1, mean ± sample SD | 0.5586 ± 0.0156 | 0.6346 ± 0.0553 |
+| Failure recall, mean | 0.1725 | 0.3541 |
+| Success recall, mean | 0.9458 | 0.8992 |
+| Accuracy, mean | 0.7695 | 0.7749 |
 
-The project uses the official preprocessed `correct_guess_task` splits without cleaning or repartitioning. Each row concerns one intended target in a clue context, with a binary success label.
+The paired mean Macro-F1 gain was **+0.0760 ± 0.0491** across five seeds. B detected more failed selections and missed more successful ones. The paper’s RoBERTa comparison moved from 0.57 to 0.67. The original checkpoint’s identity is unverified, and this experiment uses fixed settings. Both conditions used the same model-loading path. A reload check in the recorded environment selected SDPA attention, although the protocol specified eager attention. The reported gain describes the executed comparison on this split. The model sees the target and giver rationale, and the prefix combines several cues, which limits conclusions about human guessing, causation and generalization. [Detailed results and limitations](docs/results_analysis.md)
 
-| Component | Scope |
-| --- | --- |
-| Condition A | `base_text`: remaining words, giver rationale, target, and clue |
-| Condition B | `personality_only`: giver/guesser personality profiles, followed by the same base input |
-| Model candidate | `FacebookAI/roberta-base`, [pinned revision and configuration](configs/model_candidate.json) |
-| Primary metric | Macro-F1 across failure and success |
-| Repetition | Five paired seeds completed; fixed settings specified in the [protocol](docs/experimental_protocol.md) |
+![Test Macro-F1 for all five seed pairs with dashed published reference scores](reports/paired_macro_f1.svg)
 
-The classifier receives the intended target and giver rationale, which are hidden from the human guesser. This is success prediction with privileged information, rather than a model of the guesser's information state.
+*Dashed lines are the published reference scores. Each point is a run. Table SDs describe variation across seeds.*
 
-## Verified so far
+## What was verified
 
-- **Paired data:** All 9,519 examples share the same label and exact base content across A/B. Train/Validation/Test contain 8,497/544/478 rows. Missing profiles, duplicates and conflicting labels were recorded and preserved; no exact input overlap was found across splits.
-- **Labels and metrics:** Explicit `False -> 0` / `True -> 1` conversion preserves split distributions. Five known-answer synthetic fixtures verify two-class Macro-F1 and distinguish it from accuracy.
-- **Accumulation:** Protocol v1.0.1 normalizes loss by the actual group example count, including [8,8,1]. Synthetic regression checks cover gradients, clipping and checkpoint recovery in separate CPU processes.
-- **Selection and coverage:** A separate adapter connects `eval_validation_macro_f1` to checkpoint selection, excludes Test from the development builder, and preserves final incomplete evaluation batches under the tested configuration.
-- **Tokenizer and execution:** The pinned tokenizer preserves all Train/Validation inputs at its 512-token capacity (maximum observed: 197, including special tokens). A small randomly initialized RoBERTa completes synthetic forward/loss, two optimizer steps, evaluation, checkpoint selection, save and reload on CPU.
+- A and B share all 9,519 released rows, labels and base inputs. Missing profiles, duplicates and conflicting labels were retained.
+- A regression check verified that loss gives equal weight to each example in the last accumulation group, which contains 17 examples.
+- The Test evaluator retained all 478 rows per run and verified the ten Validation-selected checkpoints. The prediction export supports independent score recalculation. [Validation evidence](docs/validation.md) · [Execution provenance](reports/stage5_provenance.json)
 
-Data and implementation checks remain separate from the [executed predictive comparison](docs/stage5_training_evaluation.md). The observed difference is descriptive and does not establish a causal personality effect.
+## Reproduce
 
-## Executed comparison
+From the repository root, run the following with Python 3.11 or newer. The command uses the committed predictions and standard library to verify the scores.
 
-Across five paired seeds, the profile prefix increased mean Test Macro-F1 from 0.5586 to 0.6346. Mean failure recall rose from 0.1725 to 0.3541 while success recall fell from 0.9458 to 0.8992. The [results analysis](docs/results_analysis.md) explains the paired errors, seed variation, post hoc profile groups and limits of the published comparison. The [execution report](docs/stage5_training_evaluation.md) documents the ten fits, checkpoint selection and final evaluation.
-
-## Reproduce the checks
-
-Use PowerShell from the repository root with an existing CPython 3.11 interpreter; 3.11.17 was tested.
-
-```powershell
-python -m venv .venv
-$env:PIP_CACHE_DIR = Join-Path (Get-Location) '.cache\pip'
-.\.venv\Scripts\python.exe -m pip install -r environment/requirements-win-cpu.lock.txt
-.\.venv\Scripts\python.exe scripts/restore_recorded_files.py
-.\.venv\Scripts\python.exe scripts/validate_dataset.py
-.\.venv\Scripts\python.exe scripts/audit_labels.py
-.\.venv\Scripts\python.exe scripts/audit_tokenization.py
-.\.venv\Scripts\python.exe scripts/smoke_test.py --device cpu
-.\.venv\Scripts\python.exe scripts/validate_protocol.py
-.\.venv\Scripts\python.exe scripts/validate_accumulation.py
+```text
+python -B scripts/recompute_test_scores.py
 ```
 
-Check that `python --version` reports Python 3.11 before creating the environment. Restoration retrieves omitted data/tokenizer files from recorded URLs and verifies their hashes without replacing different existing bytes. Later checks use local inputs. The smoke test uses invented examples and random tiny-model weights.
+[Prediction CSV](reports/test_predictions.csv) · [Run-level scores](reports/stage5_per_run.csv) · [Analysis guide](docs/results_analysis.md#reproduce) · [Full training replay](environment/README.md#full-training-and-evaluation-replay)
 
-See [environment setup and troubleshooting](environment/README.md) for interpreter selection, offline execution and output details, and [source provenance](sources/README.md) for acquisition and hashes.
+## Further reading
 
-## Limits and next steps
-
-The earlier [pre-execution audit](reports/execution_readiness.json) records the original stop before GPU preparation. Current execution evidence is the [GPU preflight](reports/full_model_gpu_preflight.json), [short timing blocks](reports/gpu_synthetic_benchmark.json), [GPU lock](environment/requirements-win-gpu.lock.txt) and ignored activation manifest under `artifacts/experiments/cc-fixed-v1.0.1/activation.json`. All ten Validation selections were locked before the separate final Test evaluation.
-
-Raw guesses, participant/game/turn IDs, and the original data-construction pipeline are unavailable in the inspected release. Labels cannot be regenerated, participant-level split separation cannot be independently checked, and personality score construction remains unverified. The executable model candidate has not been established as the exact original checkpoint.
-
-The observed predictive difference does not establish a causal personality effect or equivalence to human cognitive processes. [Methods mapping](docs/methods_mapping.md) distinguishes the paper, public artifacts and this implementation. The [roadmap](ROADMAP.md) and [recommended experimental protocol](docs/experimental_protocol.md) describe the remaining work.
-
-## Repository guide
-
-- `src/`, `scripts/`: compatibility adapter and reproducible checks.
-- `docs/`: methods, validation findings and protocol decisions.
-- `environment/`, `configs/`: environment lock and model candidate.
-- `sources/`, `reports/`: source provenance and recorded validation evidence.
+[Research report](docs/research_report.md) · [Methods crosswalk](docs/methods_mapping.md) · [Execution and evaluation correction](docs/stage5_training_evaluation.md) · [Data and source provenance](sources/README.md) · [Roadmap](ROADMAP.md)

@@ -2,13 +2,19 @@
 
 ## Scope and provenance
 
-The project executed protocol cc-fixed-v1.0.1 on the released correct_guess_task Train/Validation/Test splits. Condition A used base_text; condition B used personality_only. Five paired seeds (13, 37, 73, 109, 149) produced ten independent pretrained RoBERTa-base starts. No hyperparameter search, performance-based setting change, model reuse between runs, data cleaning or Test-based checkpoint selection was performed.
+The project executed protocol cc-fixed-v1.0.1 on the released correct_guess_task Train/Validation/Test splits. Condition A used base_text; condition B used personality_only. Five paired seeds (13, 37, 73, 109, 149) produced ten fits from five initialization snapshots. A and B shared a snapshot within each seed. No hyperparameter search, performance-based setting change, model reuse between runs, data cleaning or Test-based checkpoint selection was performed.
 
 The active configuration SHA-256 is dea267bebe4c276547d07ce986a8969d47ac67eef06601356e57a3c5e8c05498. The ignored activation manifest at artifacts/experiments/cc-fixed-v1.0.1/activation.json records the dirty Git tree's execution-source hashes, released-data hashes, tokenizer/model revision, exact pretrained weight bytes, paired initial snapshots, resolved arguments and run order. The candidate is FacebookAI/roberta-base at revision e2da8e2f811d1448a5b465c236feacd80ffbac7b; identity with the paper's original checkpoint remains unverified. The local environment used Python 3.11.17, torch 2.9.1+cu128, Transformers 4.57.1 and one RTX 5080 Laptop GPU (driver 592.27). See the [GPU environment lock](../environment/requirements-win-gpu.lock.txt), [protocol](experimental_protocol.md) and [source manifest](../sources/manifest.json).
 
 The [public provenance manifest](../reports/stage5_provenance.json) exports file-level hashes from the activation and locked selections without personal absolute paths. It records that the activation working tree was dirty; the recorded commit alone does not identify the executed source.
 
-Each run used 15 epochs and 3,990 optimizer updates, with 8,497 Train examples and 544 Validation examples per epoch. The runner logged each full Train case order and Validation result. Validation Macro-F1 selected the highest scoring epoch, retaining the earliest epoch for an exact tie. All ten selection manifests were locked before the separate final Test evaluator opened the 478-row Test split. The complete per-run and paired values are in [machine-readable results](../reports/stage5_results.json), [per-run CSV](../reports/stage5_per_run.csv) and [paired CSV](../reports/stage5_paired_differences.csv).
+Each run used 15 epochs and 3,990 optimizer updates, with 8,497 Train examples and 544 Validation examples per epoch. The runner recorded a hash of each epoch’s ordered Train row indices and logged the Validation result. Validation Macro-F1 selected the highest scoring epoch, retaining the earliest epoch for an exact tie. All ten selection manifests were locked before the separate final Test evaluator parsed the 478 Test rows. The complete per-run and paired values are in [machine-readable results](../reports/stage5_results.json), [per-run CSV](../reports/stage5_per_run.csv) and [paired CSV](../reports/stage5_paired_differences.csv).
+
+## Attention on model reload
+
+The frozen configuration specifies `eager` attention. The [snapshot preparation code](../scripts/train_research.py) and [GPU preflight](../scripts/preflight_full_model_gpu.py) pass that argument explicitly. Training reloads the saved initialization with `from_pretrained(init, local_files_only=True)`. The [corrected evaluator](../scripts/evaluate_final_corrected.py) uses the same default when it opens each selected checkpoint. The saved model configurations omit the backend. With Transformers 4.57.1 and the recorded PyTorch build, reloading the seed-13 initialization constructed `RobertaSdpaSelfAttention`. This check read the initial weights and performed no forward pass.
+
+Both conditions use these same calls. The check establishes the loader behavior in the recorded environment. Per-run backend or CUDA kernel traces were not retained. The scores describe the executed models, and the size or direction of any difference under forced eager attention is unknown.
 
 ## Per-run results
 
@@ -31,7 +37,7 @@ Condition A mean Test Macro-F1 was **0.5586** (sample SD 0.0156 across five seed
 
 ## Integrity, runtime and failure history
 
-The [independent post-run audit](../reports/stage5_results.json) passed: ten complete attempt records, 150 Validation evaluations, 15 complete Train case-order records per run, equal A/B case orders within each paired seed, verified earliest-best Validation selection, unchanged selected checkpoint weight hashes, and 4,780 Test predictions with unique stable row IDs, correct original-row/label alignment, finite logits and independently recomputed metrics. The frozen Test rule accepted all inputs without overflow; no Test cases were omitted by an incomplete batch. Original texts and labels were not changed.
+The [independent post-run audit](../reports/stage5_results.json) passed: ten complete attempt records, 150 Validation evaluations, 15 complete Train case-order records per run, equal A/B case orders within each paired seed, verified earliest-best Validation selection, unchanged selected checkpoint weight hashes, and 4,780 Test predictions aligned to the same 478 stable row IDs across runs, correct original-row/label alignment, finite logits and independently recomputed metrics. The frozen Test rule accepted all inputs without overflow; no Test cases were omitted by an incomplete batch. Original texts and labels were not changed.
 
 Total measured training time was **18,811.539 seconds (5 h 13 min 31.5 s)**, below the user-selected 24-hour local GPU training ceiling. This is the sum of ten fit durations, distinct from short synthetic timing extrapolations and final inference time. The largest recorded PyTorch peak reserved GPU memory during the ten fits was approximately 3.36 GiB; this is not a continuous whole-system VRAM maximum. All ten fits completed on their first attempts with no training failure, resume, exclusion or scientific protocol change.
 
@@ -45,4 +51,4 @@ From the project root, with the recorded GPU environment and local artifacts pre
 
 This audit will fail if existing public results differ; the final evaluator intentionally refuses to overwrite existing predictions. Run directories retain configurations, case-order hashes, Trainer histories, optimizer/scheduler checkpoints, selected weights, raw per-row prediction IDs and logits, metrics and attempt records. Large artifacts and raw Test input text are excluded from Git.
 
-The next stage can compare the run variation and published reference more carefully, inspect errors without tuning this frozen experiment, and state the limits of the released dataset. A positive paired predictive difference does not establish a causal personality effect, participant-level split independence or a model of human inference.
+The detailed analysis compares run variation, the published reference and paired errors. The research report synthesizes that evidence and its limits. [Results analysis](results_analysis.md) · [Research report](research_report.md)

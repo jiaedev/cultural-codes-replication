@@ -1,6 +1,6 @@
 # Experimental protocol
 
-**Fixed-settings design v1.0.1: executed on the verified local GPU.** The scientific choices below define one limited replication. Ten planned runs and final Test evaluations are complete; [the execution report](stage5_training_evaluation.md) records results, integrity checks and an evaluation-only correction.
+**Fixed-settings design v1.0.1: executed on the verified local GPU.** The scientific choices below define one limited replication. Ten planned runs and final Test evaluations are complete; [the execution report](stage5_training_evaluation.md) records results, integrity checks, the attention reload discrepancy and an evaluation-only correction.
 
 The executable source of truth is [experimental_protocol.v1.json](../configs/experimental_protocol.v1.json). [Resolved arguments](../reports/resolved_protocol_arguments.json) expose installed Trainer defaults for all ten run identities on CPU; they are not proof of a CUDA environment. The [execution plan](../reports/experimental_run_plan.json) fixes IDs, paired order and artifact locations.
 
@@ -16,17 +16,17 @@ This is **fixed-settings limited replication**, not reproduction of the paper's 
 
 Split sizes and SHA-256 are in the configuration and [source manifest](../sources/manifest.json): Train 8,497, Validation 544, Test 478. Labels map exactly `False -> 0`, `True -> 1`. No weighting, resampling, relabeling, imputation or row removal is used.
 
-The recommended model/tokenizer is `FacebookAI/roberta-base` at revision `e2da8e2f811d1448a5b465c236feacd80ffbac7b`. The paper names base RoBERTa; public code names `roberta-base-cased`, whose identity remains unresolved. Executability is not evidence of exact original-model identity. [Methods mapping](methods_mapping.md) records that boundary.
+The executed model/tokenizer is `FacebookAI/roberta-base` at revision `e2da8e2f811d1448a5b465c236feacd80ffbac7b`. The paper names base RoBERTa; public code names `roberta-base-cased`, whose identity remains unresolved. Executability is not evidence of exact original-model identity. [Methods mapping](methods_mapping.md) records that boundary.
 
-Use `RobertaForSequenceClassification`, a two-output head and single-label cross-entropy, with all parameters trainable. Set hidden, attention and classifier dropout to 0.1. Retain source architecture settings, GELU and LayerNorm epsilon 1e-5. New linear head weights use the source initializer's normal distribution (mean 0, SD 0.02), with zero biases. Dtype is float32 and attention implementation is eager.
+Use `RobertaForSequenceClassification`, a two-output head and single-label cross-entropy, with all parameters trainable. Set hidden, attention and classifier dropout to 0.1. Retain source architecture settings, GELU and LayerNorm epsilon 1e-5. New linear head weights use the source initializer's normal distribution (mean 0, SD 0.02), with zero biases. The specified dtype is float32 and the specified attention implementation is eager. The [execution record](stage5_training_evaluation.md#attention-on-model-reload) documents the backend selected by the actual reload path.
 
-Before any run, verify the fixed source safetensors file against the [official revision metadata](../reports/protocol_model_metadata.json): 498,818,054 bytes, SHA-256 `5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81`. It has not been downloaded in Stage 4.
+Before any run, verify the fixed source safetensors file against the [official revision metadata](../reports/protocol_model_metadata.json): 498,818,054 bytes, SHA-256 `5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81`. The download was deferred until local GPU preparation. The executed runs used the verified weights.
 
-For each seed, create one CPU initial classification snapshot from those pretrained bytes plus the seeded random head. Save it once; A/B load that same snapshot in fresh processes. Verify full parameter/head hashes before optimizer creation. This is the prescribed full-model procedure; only its tiny random-model analogue has been executed.
+For each seed, create one CPU initial classification snapshot from those pretrained bytes plus the seeded random head. Save it once; A/B load that same snapshot in fresh processes. Verify full parameter/head hashes before optimizer creation. The ten research fits used the full-model procedure. The matched initial snapshot hashes are in the execution provenance.
 
 ## 3. Fixed training settings and rationale
 
-| Setting | Recommended value | Reason / departure |
+| Setting | Executed value | Reason / departure |
 | --- | --- | --- |
 | Learning rate / duration | 5e-6; 15 full epochs; no hyperparameter search | Public-code rate within Appendix E; maximum follows paper range rather than code's 25. |
 | Optimizer | torch AdamW; betas (0.9,0.999), epsilon 1e-8 | Explicit common optimizer settings; not inferred as the authors' exact environment. |
@@ -70,7 +70,7 @@ Existing Train/Validation audits show a maximum of 197 and no information loss a
 
 Evaluate and save at every epoch, using Validation only. Maximize exact key **`eval_validation_macro_f1`**. Use strict greater comparison; an exactly equal floating score retains the earliest epoch. No early stopping: run all 15 epochs unless a technical failure occurs. Keep at most two complete epoch checkpoints (best and latest), with optimizer/scheduler/RNG state for recovery; export the selected model and a checkpoint-hash/selection manifest. Missing/nonfinite selection metrics fail clearly.
 
-The development builder has no Test dataset argument. The [research runner](../scripts/train_research.py) uses Train/Validation only, and the [separate final evaluator](../scripts/evaluate_final.py) requires all ten selected checkpoint manifests before reading Test.
+The development builder has no Test dataset argument. The [research runner](../scripts/train_research.py) uses Train/Validation only, for model inputs and selection. Protocol loading hashes the bytes of every split, including Test, for integrity. The [corrected final evaluator](../scripts/evaluate_final_corrected.py) locks all ten selections before parsing or tokenizing Test rows.
 
 ## 6. Final Test evaluation and reporting
 
@@ -103,11 +103,11 @@ These are arithmetic planning quantities, confirmed against installed Trainer st
 
 No credible end-to-end duration or monetary cost is available before GPU validation. A short synthetic block can characterize execution/memory but is not a measured full training time; any later extrapolation must state its sequence-length/padding/IO assumptions and uncertainty. No GPU service or paid budget is committed here.
 
-Normal finite low performance is valid and retained. For a transient interruption, allow one recovery attempt at the same seed/configuration: resume the latest complete epoch checkpoint, including optimizer/scheduler/RNG/data-order state; otherwise restart from the original initial snapshot within that limit. Retain all attempt records. Ignore incomplete checkpoint writes and never replace a failed seed with a favorable one.
+Normal finite low performance is valid and retained. For a transient interruption, allow one recovery attempt at the same seed/configuration: resume the latest complete epoch checkpoint, including optimizer/scheduler/RNG/data-order state; otherwise restart from the original initial snapshot within that limit. Retain all attempt records. Ignore incomplete checkpoint writes and never replace a failed seed with a favorable one. The current runner requires a complete checkpoint once a start has been recorded. The fallback restart from initialization is specified but unavailable through that CLI. All ten reported fits completed on their first attempts.
 
 OOM, nonfinite loss/gradients, hash mismatch or unsupported deterministic operators stop the plan. Do not silently change batch, precision, seeds or inputs. A scientific-setting change creates a new protocol version; retain old attempts as superseded and do not pool them into the new primary ten-run comparison. Report missing runs; the five-pair primary summary is incomplete until the prescribed runs are valid.
 
-## 8. Execution readiness and remaining decisions
+## 8. Execution readiness and activation gates
 
 The active target is this PC’s single RTX 5080 Laptop GPU on Windows x64, CPython 3.11.17 and the [isolated GPU lock](../environment/requirements-win-gpu.lock.txt). The prior Linux recommendation and Windows DLL block are retained as historical context. A new CUDA wheel imported and passed a tensor operation without changing the security policy.
 
@@ -120,7 +120,7 @@ Before activation, require:
 
 Test length checks remain a separate pre-scoring gate after all ten selections (§6).
 
-The [CPU protocol check](../reports/protocol_validation.json), [loss regression](../reports/accumulation_validation.json), [full-size GPU preflight](../reports/full_model_gpu_preflight.json) and [short synthetic timing blocks](../reports/gpu_synthetic_benchmark.json) match the active protocol hash. The user selected a 24-hour total GPU ceiling and no external service cost in [execution_budget.json](../configs/execution_budget.json). The ignored activation manifest freezes the actual code hashes, GPU environment, pinned bytes, initial snapshots, Train/Validation coverage and run order. It records the dirty Git tree with per-file hashes. Test length inspection remains deferred until all ten Validation selections are locked.
+The [CPU protocol check](../reports/protocol_validation.json), [loss regression](../reports/accumulation_validation.json), [full-size GPU preflight](../reports/full_model_gpu_preflight.json) and [short synthetic timing blocks](../reports/gpu_synthetic_benchmark.json) match the active protocol hash. The user selected a 24-hour total GPU ceiling and no external service cost in [execution_budget.json](../configs/execution_budget.json). The ignored activation manifest freezes the actual code hashes, GPU environment, pinned bytes, initial snapshots, Train/Validation coverage and run order. It records the dirty Git tree with per-file hashes. Test length inspection took place after all ten Validation selections were locked.
 
 ## 9. Reproduce the configuration check
 
@@ -137,4 +137,4 @@ Underlying data and interpretation limits remain in [methods mapping](methods_ma
 
 ## 10. Executed protocol record
 
-The ten fixed local GPU fits and ten final Test evaluations are complete under the configuration above. No scientific setting changed after activation. The first final-evaluation entry point failed before prediction because it passed preconverted integer labels to the strict CSV label converter; a separately hashed one-line evaluation-only correction was used after all ten Validation selections were locked. The [execution report](stage5_training_evaluation.md), [independent result audit](../reports/stage5_results.json) and [correction provenance](../reports/stage5_evaluation_correction.json) contain actual outputs and the failure boundary. This record does not alter the frozen protocol.
+All ten planned local GPU fits and final Test evaluations completed. The configuration file stayed fixed after activation. Its eager attention setting was not forwarded on model reload in either condition. The first final-evaluation entry point failed before prediction because it passed preconverted integer labels to the strict CSV label converter; a separately hashed one-line evaluation-only correction was used after all ten Validation selections were locked. The [execution report](stage5_training_evaluation.md), [independent result audit](../reports/stage5_results.json) and [correction provenance](../reports/stage5_evaluation_correction.json) contain actual outputs and the failure boundary. This record does not alter the frozen protocol.

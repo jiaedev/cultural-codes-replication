@@ -1,4 +1,5 @@
 """Recompute descriptive results from frozen local predictions. Run with Python and ReportLab."""
+import argparse
 import csv
 import json
 import statistics as st
@@ -32,7 +33,7 @@ def metrics(labels, predictions):
     return result, matrix
 
 
-def plot(runs):
+def plot(runs, output_dir):
     drawing = Drawing(600, 330)
     drawing.add(String(24, 304, "Target selection success: Test Macro-F1", fontSize=17))
     drawing.add(String(24, 282, "Blue: base input (A)     Orange: personality + base (B)     Dashed: ACL Table 5", fontSize=10))
@@ -56,10 +57,15 @@ def plot(runs):
             graph.lines[i].strokeDashArray = [5,4]
     drawing.add(graph)
     drawing.add(String(240, 22, "Paired initialization seed", fontSize=11))
-    renderSVG.drawToFile(drawing, str(REPORTS / "paired_macro_f1.svg"))
+    renderSVG.drawToFile(drawing, str(output_dir / "paired_macro_f1.svg"))
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=REPORTS)
+    parser.add_argument("--replay", action="store_true",
+                        help="Analyze a new execution without the historical evaluator failure record")
+    options = parser.parse_args()
     # Existing audit checks original CSV bytes, aligned IDs, logits, checkpoint bytes and CSV summaries.
     for name in ("stage5_results.json", "stage5_per_run.csv", "stage5_paired_differences.csv"):
         audit.require((REPORTS / name).is_file(), f"Missing prior result: {name}")
@@ -69,16 +75,17 @@ def main():
     args = read(REPORTS / "resolved_gpu_arguments.json")["runs"]
     expected = {(c,s) for c in "AB" for s in SEEDS}
     assert {(r["condition"], r["seed"]) for r in audit.PLAN["runs"]} == expected
-    correction = read(REPORTS / "stage5_evaluation_correction.json")
-    before = read(base / "evaluation_correction_preflight.json")
-    original = ROOT / "scripts/evaluate_final.py"
-    fixed = ROOT / "scripts/evaluate_final_corrected.py"
-    assert original.read_text().replace("for r in rows],labels,tokenizer)", "for r in rows],[r['output'] for r in rows],tokenizer)") == fixed.read_text()
-    for key, path in [("original_evaluator_sha256", original), ("corrected_evaluator_sha256", fixed),
-                      ("selection_lock_sha256", base / "selection_lock.json")]:
-        assert before[key] == correction[key] == audit.digest(path)
-    assert before["test_prediction_files_before_rerun"] == 0 and before["selections_locked_before_correction"] == 10
-    assert "Unexpected Boolean label: 0" in (base / "final_test.stderr.log").read_text()
+    if not options.replay:
+        correction = read(REPORTS / "stage5_evaluation_correction.json")
+        before = read(base / "evaluation_correction_preflight.json")
+        original = ROOT / "scripts/evaluate_final.py"
+        fixed = ROOT / "scripts/evaluate_final_corrected.py"
+        assert original.read_text().replace("for r in rows],labels,tokenizer)", "for r in rows],[r['output'] for r in rows],tokenizer)") == fixed.read_text()
+        for key, path in [("original_evaluator_sha256", original), ("corrected_evaluator_sha256", fixed),
+                          ("selection_lock_sha256", base / "selection_lock.json")]:
+            assert before[key] == correction[key] == audit.digest(path)
+        assert before["test_prediction_files_before_rerun"] == 0 and before["selections_locked_before_correction"] == 10
+        assert "Unexpected Boolean label: 0" in (base / "final_test.stderr.log").read_text()
     with (ROOT / audit.SPEC["data"]["directory"] / "test.csv").open(encoding="utf-8", newline="") as f:
         source = list(csv.DictReader(f))
     labels = [audit.SPEC["data"]["label2id"][row["output"]] for row in source]
@@ -101,7 +108,8 @@ def main():
         assert args[rid]["num_train_epochs"] == 15 and args[rid]["seed"] == s
         assert Path(state["best_model_checkpoint"]).name == m["selected_checkpoint"] == selected["checkpoint"]
         attempts = audit.read_jsonl(folder / "attempts.jsonl")
-        assert [a["status"] for a in attempts] == ["running","complete"] and all(a["resume_checkpoint"] is None for a in attempts)
+        if not options.replay:
+            assert [a["status"] for a in attempts] == ["running","complete"] and all(a["resume_checkpoint"] is None for a in attempts)
         for name in ("False","True"):
             for key,value in m["per_class"][name].items():
                 assert audit.close(value, runs[c,s][f"{name.lower()}_{key}"])
@@ -139,13 +147,14 @@ def main():
                   paired_difference=dict(values=differences,mean=st.mean(differences),sd=st.stdev(differences)),
                   always_true=metrics(labels,[1]*len(labels))[0], true_votes_across_seeds=votes,
                   exploratory_groups=subgroups, examples=examples, validation_curves=curves)
-    (REPORTS / "results_analysis.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
-    with (REPORTS / "results_by_class.csv").open("w", newline="",encoding="utf-8") as f:
+    options.output_dir.mkdir(parents=True, exist_ok=True)
+    (options.output_dir / "results_analysis.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
+    with (options.output_dir / "results_by_class.csv").open("w", newline="",encoding="utf-8") as f:
         writer=csv.DictWriter(f, fieldnames=["condition","seed",*runs["A",13]])
         writer.writeheader()
         for (c,s), values in runs.items():
             writer.writerow(dict(condition=c,seed=s,**values))
-    plot(runs)
+    plot(runs, options.output_dir)
 
 
 if __name__ == "__main__":

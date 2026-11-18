@@ -6,11 +6,11 @@ On the same 478 released Test cases, adding the giver and guesser profile prefix
 
 ## Prediction and checkpoint integrity
 
-We aligned ten saved prediction files to the released Test CSV by split hash, one-based row, stable case ID, export index, input hash and reference label. False (0) means failure to select the intended target and True (1) means success. The maximum of two finite logits determined the prediction, with class 0 selected on a tie. Both classes enter Macro-F1 with equal weight and undefined precision is set to zero. Recalculated confusion counts, class metrics, accuracy, seed means, sample SDs and paired differences agreed with the stored results at full numerical precision within the audit tolerance (1e−12). Four-decimal reporting accounts for differences from the printed tables.
+The row-level check matched all ten original prediction files to the released Test CSV using the split hash, one-based row, stable case ID, source export index, input hash and reference label. All 4,780 decisions also matched the public prediction export in order. False (0) means failure to select the intended target and True (1) means success. The maximum of two finite logits determined the prediction, with class 0 selected on an exact tie. The saved logits contained no exact ties. Both classes enter Macro-F1 with equal weight and undefined precision is set to zero. Recalculated confusion counts, class metrics, accuracy, seed means, sample SDs and paired differences agreed with the stored results within an absolute tolerance of 1e−12. Differences and sample SDs use unrounded run scores. For example, the displayed scores at seed 37 give 0.6859 − 0.5792 = 0.1067, while the unrounded paired difference rounds to 0.1066.
 
 The final Trainer states recorded 15 epochs and 3,990 updates for all ten runs. Each selected checkpoint matched the earliest maximum among its 15 Validation scores, the locked weight hash and the final evaluation record. All ten fits had one start and one completion with no resume checkpoint.
 
-The original evaluation traceback ended at dataset construction. The correction preflight recorded ten locked selections and zero prediction files. We checked the evaluator source diff and both source hashes. The one changed argument passes the CSV Boolean strings to the dataset converter. The corrected evaluator used the locked selections. A byte-exact replay of the previous audit under Python 3.12 differed only in the serialization of total training seconds (18811.539 versus 18811.538999999997). Replaying under its recorded Python 3.11 interpreter matched the original files. [Correction record](../reports/stage5_evaluation_correction.json) · [Provenance](../reports/stage5_provenance.json)
+The original evaluation traceback ended at dataset construction. The correction preflight recorded ten locked selections and zero prediction files. The source diff and both recorded hashes identify one changed argument. The corrected evaluator passes the raw CSV Boolean strings to the dataset converter and loads the locked selections. [Correction record](../reports/stage5_evaluation_correction.json) · [Provenance](../reports/stage5_provenance.json)
 
 ## Class performance
 
@@ -18,15 +18,15 @@ Each cell summarizes five run-level values as mean ± sample SD. Each confusion 
 
 | Metric | A · base | B · profiles + base |
 | --- | --- | --- |
-| false_predicted | 38.8000 ± 5.3104 | 75.8000 ± 21.8335 |
-| false_precision | 0.4842 ± 0.0250 | 0.5030 ± 0.0605 |
-| false_recall | 0.1725 ± 0.0263 | 0.3541 ± 0.1215 |
-| false_f1 | 0.2536 ± 0.0307 | 0.4088 ± 0.1053 |
-| true_precision | 0.7947 ± 0.0043 | 0.8259 ± 0.0236 |
-| true_recall | 0.9458 ± 0.0077 | 0.8992 ± 0.0275 |
-| true_f1 | 0.8636 ± 0.0027 | 0.8605 ± 0.0107 |
-| accuracy | 0.7695 ± 0.0043 | 0.7749 ± 0.0186 |
-| macro_f1 | 0.5586 ± 0.0156 | 0.6346 ± 0.0553 |
+| Predicted failures (count) | 38.8000 ± 5.3104 | 75.8000 ± 21.8335 |
+| Failure precision | 0.4842 ± 0.0250 | 0.5030 ± 0.0605 |
+| Failure recall | 0.1725 ± 0.0263 | 0.3541 ± 0.1215 |
+| Failure F1 | 0.2536 ± 0.0307 | 0.4088 ± 0.1053 |
+| Success precision | 0.7947 ± 0.0043 | 0.8259 ± 0.0236 |
+| Success recall | 0.9458 ± 0.0077 | 0.8992 ± 0.0275 |
+| Success F1 | 0.8636 ± 0.0027 | 0.8605 ± 0.0107 |
+| Accuracy | 0.7695 ± 0.0043 | 0.7749 ± 0.0186 |
+| Macro-F1 | 0.5586 ± 0.0156 | 0.6346 ± 0.0553 |
 
 Of the 109 actual failures, A detected 18.8 and B detected 38.6 on average. Of the 369 successes, A correctly predicted 349.0 and B correctly predicted 331.8. The change in failure F1 (+0.1552) and success F1 (−0.0032) contribute equally to the Macro-F1 difference. An always-True prediction on these same labels gets accuracy 0.7720 and Macro-F1 0.4357. This descriptive imbalance reference was calculated after evaluation.
 
@@ -70,7 +70,7 @@ Both profiles were present for 378 cases (85 False, 293 True). At least one prof
 
 The gain was larger in the missing group at all five seeds. Only 24 failures contribute to that group's failure recall. The groups contain different examples and the missing group still carries the giver profile and an explicit missing marker. This comparison cannot isolate the effect of missingness or the contribution of the numerical trait values.
 
-After aggregation, we chose one case per error category by maximum number of seeds exhibiting that transition, breaking ties by lowest original Test row. This selects persistent patterns by construction. The words below are from the released input. Predictions are in seed order 13, 37, 73, 109, 149.
+The post hoc selection rule favors persistent patterns. Within each error category, it takes the case exhibiting that outcome across the most seeds and breaks ties by the earliest original Test row. The words below are from the released input. Predictions are in seed order 13, 37, 73, 109, 149.
 
 | Category | Test row | Clue → target | Label | A predictions | B predictions |
 | --- | --- | --- | --- | --- | --- |
@@ -84,14 +84,21 @@ For *military → draft*, the prefix accompanied a change from failure to succes
 
 The ACL publication's Table 5 reports RoBERTa Macro-F1 of 0.57 with no priors and 0.67 with Personality, an approximately 0.10 gain from rounded scores. This replication recovered the positive direction for each paired seed. Its absolute means were about 0.011 and 0.035 below the published values, and its mean gain about 0.024 smaller. The paper averages five runs and gives no per-run scores or dispersion for these two cells. The available figures support a descriptive comparison only. [ACL publication, §4.3, §5, Table 5 and Appendix E](../sources/paper/2023.findings-acl.410.pdf)
 
-We retained the released splits and the target-level binary task. The classifier sees the target and giver rationale alongside the clue and remaining words, giving it information hidden from the human guesser. The public script names roberta-base-cased. This project used pinned FacebookAI/roberta-base, fixed 5e−6 and 15 epochs, and preserved incomplete batches. The paper searched rates and epoch settings, and the released classification code specifies 25 epochs and drops incomplete batches. Exact checkpoint identity, original seeds and software environment remain unresolved. Participant/game identifiers, original guesses and the personality-scoring pipeline are unavailable for independent reconstruction. [Methods crosswalk](methods_mapping.md) · [Released training code](../sources/upstream/models/baseline_classification.py)
+The experiment retains the released splits and the target-level binary task. The classifier sees the target and giver rationale alongside the clue and remaining words, giving it information hidden from the human guesser. The public script names roberta-base-cased. This project used pinned FacebookAI/roberta-base, fixed 5e−6 and 15 epochs, and preserved incomplete batches. The paper searched rates and epoch settings, and the released classification code specifies 25 epochs and drops incomplete batches. Exact checkpoint identity, original seeds and software environment remain unresolved. Participant/game identifiers, original guesses and the personality-scoring pipeline are unavailable for independent reconstruction. [Methods crosswalk](methods_mapping.md) · [Released training code](../sources/upstream/models/baseline_classification.py)
 
 Under this dataset, candidate model and protocol, the full profile prefix improved average prediction of target selection success, especially the representation of failures in the score. Trait values, missing markers, role labels and input length change together. These runs cannot separate their contributions or establish a causal effect of personality, a cognitive mechanism, statistical significance or generalization to new populations.
 
 ## Reproduce
 
-Run `python -B scripts/recompute_test_scores.py` to recalculate run-level Macro-F1, accuracy, confusion matrices, condition means and paired differences from the committed CSV. This uses the Python standard library. Each record contains the condition, seed, one-based Test row, reference label and predicted label. [Test decisions](../reports/test_predictions.csv)
+The committed [Test predictions](../reports/test_predictions.csv) contain the condition, seed, one-based Test row, reference label and predicted label. From the project root, run `python -B scripts/recompute_test_scores.py` with Python 3.11 or newer. The standard-library check prints the run and prediction counts and verifies per-run Macro-F1, accuracy, confusion matrices, condition summaries and the mean paired difference of 0.0760009616 against the retained reports.
 
-For the full analysis against the original local artifacts, use the command below.
+The full check also uses the hash-verified Test CSV, original run artifacts and project Python 3.11.17 environment at `.venv-gpu`. With ReportLab 4.4.9 available in a separate interpreter, run the following from the project root in PowerShell. The two interpreters keep the exact GPU lock separate from plotting dependencies.
 
-Run `python -B scripts/analyze_results.py` from the repository root with ReportLab 4.4.9 available. The script uses the recorded project Python 3.11 environment for the earlier byte-exact audit and reads saved predictions, logs and states locally. It regenerates the CSV, JSON and SVG. The JSON includes all 150 Validation observations, paired transitions by true class and seed-vote counts. The reporting phase can use these outputs to present the main comparison and its limits.
+```powershell
+python -m venv .venv-report
+.\.venv-report\Scripts\python.exe -m pip install 'reportlab==4.4.9'
+$out = Join-Path ([System.IO.Path]::GetTempPath()) ('cultural-codes-analysis-' + [guid]::NewGuid().ToString('N'))
+.\.venv-report\Scripts\python.exe -B scripts/analyze_results.py --output-dir $out
+```
+
+This writes `results_analysis.json`, `results_by_class.csv` and `paired_macro_f1.svg` into the chosen temporary folder. The JSON includes the 150 Validation observations, paired error transitions and prediction vote counts. All three regenerated files matched the Windows working copies byte for byte. Comparison with the raw Git blobs required normalizing CRLF to LF. The detailed command rechecks saved outputs and checkpoint hashes without running model inference. [Full training replay](../environment/README.md#full-training-and-evaluation-replay)
