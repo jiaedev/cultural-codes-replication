@@ -2,11 +2,11 @@
 
 ## 1. Scope and summary
 
-The recorded checks establish two things: the released A/B fields describe the same cases with the same base content and labels, and a separate adapter can execute the intended data/metric/selection path on a small synthetic CPU model. They do not establish a personality-related performance improvement.
+The original data and CPU checks establish that released A/B fields describe the same cases with the same base content and labels, and that an adapter executes the intended metric/selection path on synthetic data. The later fixed GPU experiment and final result audit are recorded separately in §12 and the [execution report](stage5_training_evaluation.md).
 
 **Evidence date: 2026-11-17.** The retained dataset audit is timestamped 05:35:38 UTC, tokenizer audit 05:27:43 UTC and CPU smoke 05:36:55 UTC. Exact timestamps, versions, hashes and settings remain in the linked JSON. This document consolidates those existing findings; consolidation did not rerun the analyses or change their dates/results.
 
-Dataset validation is complete; implementation compatibility is verified for one CPU process. The [recommended experimental protocol](experimental_protocol.md) now specifies the design; execution freeze remains pending.
+Dataset validation and the original one-process CPU compatibility checks are complete. Later local GPU activation, ten research fits and final Test evaluation are also complete; the dated checks below retain their original scope and timestamps.
 
 ## 2. Data validation
 
@@ -119,7 +119,7 @@ No pretrained weights, research-data training, A/B performance comparison or res
 - Shared contexts support target-level expansion but do not recover unique turns. For example, Train rows 17/18 share clue `baseball` and context but differ in target/output (`pitch`/True, `field`/False). Candidate context-group counts remain in the dataset JSON and are not actual turn counts.
 - Raw survey responses/scoring and raw-to-normalized rationale pairs are absent. Personality scoring and normalization remain unverified.
 - An executable official model/tokenizer candidate is pinned, but exact original-checkpoint identity and main-experiment adoption remain unresolved; see [methods](methods_mapping.md).
-- CPU single-process execution is verified. CUDA import was blocked on the tested host; full-size GPU execution, resource use, precision and distributed behavior remain unverified. Necessary setup details are in [environment](../environment/README.md).
+- At the earlier CPU validation point, CUDA import was blocked and full-size GPU execution was unverified. The later local one-GPU preflight is recorded in §11; distributed behavior remains unverified. Necessary setup details are in [environment](../environment/README.md).
 - Technical checks do not establish predictive improvement, causal personality effects or equivalence to human inference.
 
 ## 7. Reproduction and evidence
@@ -143,9 +143,9 @@ For seeds 13, 37, 73, 109 and 149, A/B loaded the same tiny random initializatio
 
 One tiny synthetic model completed two optimizer updates with the specified AdamW/accumulation settings (technical override: one epoch on 35 invented cases, CPU, tiny dimensions and ignored output paths). Exact-score ties retained the earliest best, a partial evaluation batch of five was included, and an invented overlength input was rejected before silent truncation. Stable-ID generation produced 478 unique IDs without reading or predicting Test cases.
 
-The installed Trainer's step calculation agrees with 266 updates/epoch and 3,990 per planned run. A full-size configuration was instantiated on a meta device only to count 124,647,170 parameters; no full-model forward/backward, pretrained download, GPU memory test or wall-time estimate was validated. Research activation remains explicitly blocked. The earlier adapter and CPU lock are unchanged.
+The installed Trainer's step calculation agrees with 266 updates/epoch and 3,990 per planned run. At that dated CPU check, a full-size configuration was instantiated on a meta device only to count 124,647,170 parameters; full-model forward/backward, pretrained download, GPU memory and timing were not yet validated. Research activation was blocked then; see §11 for the later GPU checks. The earlier adapter and CPU lock are unchanged.
 
-[Resolved arguments](../reports/resolved_protocol_arguments.json) include library defaults for the ten planned run identities on CPU; [execution plan](../reports/experimental_run_plan.json) records the arithmetic budget. The [model metadata](../reports/protocol_model_metadata.json) verifies the pinned source weight file's advertised SHA-256/size without downloading it. GPU environment and research-runner checks remain required before Stage 5.
+[Resolved arguments](../reports/resolved_protocol_arguments.json) include library defaults for the ten planned run identities on CPU; [execution plan](../reports/experimental_run_plan.json) records the arithmetic budget. The [model metadata](../reports/protocol_model_metadata.json) verifies the pinned source weight file's advertised SHA-256/size without downloading it. GPU environment and research-runner checks were subsequently completed as described in §11.
 
 ## 9. Accumulation normalization and recovery regression
 
@@ -165,4 +165,30 @@ Version 1.0.1 supplies summed CE divided by the actual accumulated example count
 
 Integration fixtures use random tiny RoBERTa (vocabulary 64), invented seven-token inputs, seed 13, dropout 0.1 and deliberately wrong initial classification biases [-4,4] on class-0 labels to exercise clipping. The three-epoch duration, reduced architecture, biases, constant metric and CPU execution are explicit test overrides, not amendments to the research settings. No research text is tokenized or trained; split files are only hashed. No Test predictions, pretrained download, full-size model execution or GPU validation occurs.
 
-Run `.\.venv\Scripts\python.exe scripts/validate_accumulation.py` from the project root. Each invocation uses a new ignored artifact directory; results include the protocol/code hashes and exact versions. The planned research counts remain 266 updates per epoch, 3,990 per run and 39,900 across ten runs. This regression establishes CPU behavior for the correction; execution activation still requires the protocol's GPU and runner gates.
+Run `.\.venv\Scripts\python.exe scripts/validate_accumulation.py` from the project root. Each invocation uses a new ignored artifact directory; results include the protocol/code hashes and exact versions. The planned research counts remain 266 updates per epoch, 3,990 per run and 39,900 across ten runs. This regression establishes CPU behavior for the correction; the later GPU and runner activation checks are recorded in §11.
+
+## 10. Execution readiness audit
+
+On 2026-11-17, [the readiness checker](../scripts/check_execution_readiness.py) compared current protocol and bridge hashes with the recorded CPU validation reports, verified the ten-run plan and hashed the three source split files without inspecting Test examples. [The result](../reports/execution_readiness.json) confirms those checks pass under commit `8080f62d3c5a71f7c465189a690bf6ca868d50a2` with a dirty working tree containing this readiness record and script.
+
+The observed environment is Windows x64, Python 3.11.17 and torch 2.9.1+cpu (`torch.cuda.is_available() == false`). The RTX 5080 Laptop GPU and driver 592.27 are visible to `nvidia-smi`, but no verified CUDA Python environment, full-size GPU preflight, verified pretrained file, research training/final-evaluation runners, execution budget or activation manifest is present. The protocol remains `execution_ready=false`. This audit is a stopped pre-execution check, not a training result. It does not replace the protocol's activation gates.
+
+## 11. Local GPU activation and research execution gate
+
+On 2026-11-18, a separate project environment (.venv-gpu) imported CUDA-enabled torch 2.9.1+cu128 and completed a CUDA tensor operation on the local NVIDIA GeForce RTX 5080 Laptop GPU (driver 592.27, 16,303 MiB reported by nvidia-smi). The earlier CPU-only readiness record in §10 is a dated observation, not the active execution status. The CPU environment was retained.
+
+The pinned FacebookAI/roberta-base candidate weight file at revision e2da8e2f811d1448a5b465c236feacd80ffbac7b was restored and verified at 498,818,054 bytes, SHA-256 5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81. This establishes the executable candidate's bytes, not identity with the paper's unspecified original checkpoint.
+
+[Full-model GPU preflight](../reports/full_model_gpu_preflight.json) passed with the 124,647,170-parameter pretrained candidate and an initialized classification head on invented length-512 inputs only. It processed each of 49 invented training examples once, made two optimizer updates, preserved nine Validation examples in batches [8,1], connected the selection metric to a saved checkpoint and reloaded the saved weights. Peak reserved VRAM was 7,702,839,296 bytes. These measurements do not represent research-data training or full-run thermal behavior.
+
+[Short synthetic timing blocks](../reports/gpu_synthetic_benchmark.json) used five optimizer updates each at invented lengths 100 and 170: 3.963 and 4.646 seconds including one evaluation/save block. Any ten-run duration extrapolation from these blocks is uncertain. The user set a 24-hour total local GPU training ceiling and zero external-service cost in [execution budget](../configs/execution_budget.json).
+
+The ignored activation manifest under artifacts/experiments/cc-fixed-v1.0.1/activation.json binds the active protocol hash, per-file hashes for execution code in the dirty Git tree, the [GPU lock](../environment/requirements-win-gpu.lock.txt), exact source bytes, paired initial snapshots, GPU preflight and run order. The activation checked Train/Validation paired inputs and observed maximum token lengths of 149/197 for Train A/B and 118/197 for Validation A/B, all below the frozen 512 limit. It did not inspect Test content. Ten selections must be locked before the separate final evaluator opens Test. Research execution began after this activation; outcome and actual runtime must be recorded separately.
+
+## 12. Completed fixed execution and independent result audit
+
+On 2026-11-18, ten planned local GPU fits completed: five paired seeds, 15 epochs and 3,990 optimizer updates per run. The runner recorded 8,497 Train case indices once per epoch and 544 Validation cases per evaluation; 150 Validation metric records were audited. Every A/B seed pair had the same initial snapshot hash and all 15 case-order hashes. Validation selected the earliest epoch with the maximum Macro-F1. No fit failed or resumed, and no scientific setting was changed after activation.
+
+All ten selections were locked before the separate Test entry point opened the source split. The original evaluator then failed during dataset construction because it passed integer 0/1 labels into a converter expecting raw Boolean labels. No Test prediction file existed at that point. The separately hashed [one-line correction](../scripts/evaluate_final_corrected.py) passed the original CSV label strings to the converter; no weights or checkpoint selections changed. All ten final evaluations then completed. [Correction provenance](../reports/stage5_evaluation_correction.json) retains the original failure and the exact source hashes.
+
+The [independent result audit](../reports/stage5_results.json) verified 478 ordered Test rows per run (4,780 predictions total), row IDs, source indices, input hashes, reference labels, finite logits, argmax decisions, per-run Macro-F1/accuracy, selected checkpoint hashes, 15 Validation scores per run and summary arithmetic. The measured ten-fit sum was 18,811.539 seconds under the declared 86,400-second training ceiling. See the [full execution report](stage5_training_evaluation.md) for every score, runtime, failure boundary and interpretation limits. This audit does not resolve missing participant/game IDs, source-label reconstruction or exact original-checkpoint identity.

@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-17T08:26:54.686020+00:00",
+  "scope": "Invented text and labels only; full-size pretrained RoBERTa on one GPU. No research training or Test predictions.",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "bridge_sha256": "c5e044c2700fc1cfcb1c5a6fd1cdf03dfbca2be01263a76a6e50064a2e0e07a7",
+  "source_weight_sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.17",
+    "torch": "2.9.1+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
+    "gpu_total_bytes": 17094475776
+  },
+  "technical_overrides": {
+    "train_examples": 49,
+    "validation_examples": 9,
+    "token_length_with_special_tokens": 512,
+    "max_steps": 2,
+    "num_train_epochs": 1,
+    "seed": 13
+  },
+  "status": "passed",
+  "model_parameters": 124647170,
+  "all_parameters_trainable": true,
+  "optimizer_steps": 2,
+  "examples_seen": 49,
+  "each_example_seen_once": true,
+  "validation_example_reads": 9,
+  "best_checkpoint_exists": true,
+  "selected_checkpoint_step": 2,
+  "selection_metric_key_present": true,
+  "source_saved_reload_equal": true,
+  "evaluation_batch_sizes": [
+    8,
+    1
+  ],
+  "scheduler_final_learning_rate": 0.0,
+  "elapsed_seconds": 6.459,
+  "peak_allocated_bytes": 7382846976,
+  "peak_reserved_bytes": 7702839296,
+  "gpu_utilization_context": "Single local RTX 5080 Laptop; synthetic 49/9 inputs all length 512; includes loading, train, Validation, checkpoint save/reload in elapsed time."
+}

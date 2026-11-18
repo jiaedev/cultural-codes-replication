@@ -1,0 +1,26 @@
+{
+  "archived_at_utc": "2026-11-17T17:28:06.360254+00:00",
+  "purpose": "Exact evidence before activating local Windows GPU execution; scientific training settings unchanged.",
+  "files": [
+    {
+      "original_path": "configs/experimental_protocol.v1.json",
+      "sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d"
+    },
+    {
+      "original_path": "reports/protocol_validation.json",
+      "sha256": "fd92361d129d6f45e7ae04b10339a6720a1d1ded4ee44e636f8295e9367237c3"
+    },
+    {
+      "original_path": "reports/accumulation_validation.json",
+      "sha256": "5f29a5c19638964e44bc972c97a0906dc8c1e46e6596fb70dfa573c1b54e59bb"
+    },
+    {
+      "original_path": "reports/full_model_gpu_preflight.json",
+      "sha256": "259d295d6b82a8aac9e43463c8468e2a3e395c0dec022c53dc09fe1642858db0"
+    },
+    {
+      "original_path": "reports/gpu_synthetic_benchmark.json",
+      "sha256": "2f1a1cd58b3fb196c1980124c4bc25e98b8458652456649095a19fb783f8088b"
+    }
+  ]
+}

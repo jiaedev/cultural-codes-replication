@@ -75,8 +75,16 @@ Public reports retain scientific checks, package versions and artifact provenanc
 
 ## Protocol target environment
 
-The recommended main-experiment target is a separate Linux x86_64, single NVIDIA GPU environment with CPython 3.11.17, torch 2.9.1+cu128 and the same core Transformers/Accelerate/metric versions. This is not an installed or validated GPU lock. Preserve the verified Windows CPU specification. Before research runs, record the target's complete installed lock and run the full-size synthetic preflight specified in the [protocol](../docs/experimental_protocol.md), including FP32/eager micro-batch 8, length 512 and four-way accumulation. No Windows CUDA reinstall or security-policy change was made during protocol design.
+At the earlier protocol-design point, a separate Linux x86_64 single-GPU environment was recommended because the first Windows CUDA import had failed. That was a dated contingency. The later verified local Windows GPU snapshot below is the executed environment; the Windows CPU specification remains preserved. No security policy was changed.
 
 `python scripts/validate_protocol.py` uses the existing CPU environment to resolve/test settings with tiny random models and invented inputs only. It does not provide a research training CLI or establish GPU readiness.
 
 The v1.0.1 loss correction is checked with `python scripts/validate_accumulation.py`. It uses invented inputs and tiny random models on CPU, compares accumulated gradients against a whole-group mean loss, exercises clipping and resumes a complete epoch checkpoint in a separate process. Results are in [accumulation validation](../reports/accumulation_validation.json); these checks do not validate GPU or full-model execution.
+
+## Local GPU execution snapshot
+
+The user selected this PC's RTX 5080 Laptop GPU with no external service cost and a total GPU training ceiling of 24 hours. An isolated `.venv-gpu` uses CPython 3.11.17, torch 2.9.1+cu128, Transformers 4.57.1 and Accelerate 1.12.0; [the exact installed lock](requirements-win-gpu.lock.txt) preserves the full package set. CUDA import, a CUDA tensor operation, the 512-token full-size pretrained [synthetic preflight](../reports/full_model_gpu_preflight.json) and 100/170-token [short timing blocks](../reports/gpu_synthetic_benchmark.json) passed locally. The earlier Windows application-control failure was not reproduced with this new isolated wheel. No security policy was changed.
+
+The preflight's peak reserved memory was about 7.7 GB at length 512. The five-update invented blocks took 3.96 seconds at 100 tokens and 4.65 seconds at 170 tokens. Multiplying those short blocks by the planned updates gives roughly 9.5 hours of training-loop work across ten runs; real data lengths, Validation, checkpoint I/O, laptop thermal behavior and interruptions make that an uncertain estimate. The declared ceiling was 24 hours. The measured ten-fit total was 18,811.539 seconds (5 h 13 min 31.5 s), distinct from the short-block estimate; see the [execution report](../docs/stage5_training_evaluation.md).
+
+The completed local result can be checked without retraining by running the post-run audit with the recorded GPU interpreter: .\.venv-gpu\Scripts\python.exe -B scripts/audit_stage5_results.py. The corrected final evaluator and its one-line change are documented in [evaluation correction provenance](../reports/stage5_evaluation_correction.json); completed prediction files are protected against overwrite.

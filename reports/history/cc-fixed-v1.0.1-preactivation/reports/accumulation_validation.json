@@ -1,0 +1,388 @@
+{
+  "generated_at_utc": "2026-11-17T08:04:45.572988+00:00",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "script_sha256": "bbf32380c197f1e7da1a6bb3c7dd88fcbcc249e770cf508d70c256fa3026732f",
+  "bridge_sha256": "c5e044c2700fc1cfcb1c5a6fd1cdf03dfbca2be01263a76a6e50064a2e0e07a7",
+  "versions": {
+    "torch": "2.9.1+cpu",
+    "transformers": "4.57.1",
+    "accelerate": "1.12.0"
+  },
+  "scope": "CPU, tiny random RoBERTa and invented token IDs only. Research split files only hashed. No Test predictions or pretrained weights.",
+  "technical_overrides": {
+    "device": "cpu",
+    "model": "one layer, hidden 32, vocab 64",
+    "gradient_probe_dropout": 0,
+    "integration_dropout": 0.1,
+    "integration_training_examples": 49,
+    "integration_validation_examples": 9,
+    "integration_epochs": 3,
+    "initial_classifier_bias": [
+      -4,
+      4
+    ],
+    "integration_labels": "all zero",
+    "selection_metric": "constant 0.8 to test earliest exact ties",
+    "progress_display": false
+  },
+  "gradient_checks": {
+    "groups": [
+      {
+        "microbatch_sizes": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "denominator": 32,
+        "parameter_gradient_tensors_checked": 25,
+        "max_gradient_absolute_difference": 2.2351741790771484e-08,
+        "loss_absolute_difference": 2.9802322387695312e-08,
+        "rtol": 2e-05,
+        "atol": 2e-07
+      },
+      {
+        "microbatch_sizes": [
+          8,
+          8,
+          1
+        ],
+        "denominator": 17,
+        "parameter_gradient_tensors_checked": 25,
+        "max_gradient_absolute_difference": 2.2351741790771484e-08,
+        "loss_absolute_difference": 3.725290298461914e-08,
+        "rtol": 2e-05,
+        "atol": 2e-07,
+        "legacy_max_gradient_absolute_difference": 0.2745107412338257
+      },
+      {
+        "microbatch_sizes": [
+          3
+        ],
+        "denominator": 3,
+        "parameter_gradient_tensors_checked": 25,
+        "max_gradient_absolute_difference": 0.0,
+        "loss_absolute_difference": 0.0,
+        "rtol": 2e-05,
+        "atol": 2e-07
+      }
+    ],
+    "missing_count_rejected": true,
+    "dropout_disabled": true,
+    "reference": "one physical batch with built-in mean CE, same parameters and cases"
+  },
+  "continuous": {
+    "steps": [
+      {
+        "step": 1,
+        "epoch": 0.5714285714285714,
+        "learning_rate": 4.166666666666667e-06
+      },
+      {
+        "step": 2,
+        "epoch": 1.0,
+        "learning_rate": 3.3333333333333333e-06
+      },
+      {
+        "step": 3,
+        "epoch": 1.5714285714285714,
+        "learning_rate": 2.5e-06
+      },
+      {
+        "step": 4,
+        "epoch": 2.0,
+        "learning_rate": 1.6666666666666667e-06
+      },
+      {
+        "step": 5,
+        "epoch": 2.571428571428571,
+        "learning_rate": 8.333333333333333e-07
+      },
+      {
+        "step": 6,
+        "epoch": 3.0,
+        "learning_rate": 0.0
+      }
+    ],
+    "epoch_order_hashes": [
+      "da3d95a5feb21cbd08657f0ed7d842167e3af3a8e99d4831cb4906e350f68b1f",
+      "55b995733beb3637e7e65b14d284654e73f98351f975a4e3740bf1b5007f964a",
+      "2107467e2a8fdcbf80da6422cf5d9491d20ecef264cfaa4a46acdc18d7194306"
+    ],
+    "microbatches": [
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 1,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 1,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 1,
+        "denominator": 17
+      }
+    ],
+    "clipping": [
+      {
+        "global_step_before_update": 0,
+        "microbatches_seen": 4,
+        "max_norm": 1.0,
+        "before": 1.9990975856781006,
+        "after": 0.9999995231628418
+      },
+      {
+        "global_step_before_update": 1,
+        "microbatches_seen": 7,
+        "max_norm": 1.0,
+        "before": 2.0310192108154297,
+        "after": 0.9999995827674866
+      },
+      {
+        "global_step_before_update": 2,
+        "microbatches_seen": 11,
+        "max_norm": 1.0,
+        "before": 2.010057210922241,
+        "after": 0.9999995827674866
+      },
+      {
+        "global_step_before_update": 3,
+        "microbatches_seen": 14,
+        "max_norm": 1.0,
+        "before": 2.008517026901245,
+        "after": 0.9999995827674866
+      },
+      {
+        "global_step_before_update": 4,
+        "microbatches_seen": 18,
+        "max_norm": 1.0,
+        "before": 2.0207011699676514,
+        "after": 0.9999995231628418
+      },
+      {
+        "global_step_before_update": 5,
+        "microbatches_seen": 21,
+        "max_norm": 1.0,
+        "before": 1.981313943862915,
+        "after": 0.9999994039535522
+      }
+    ],
+    "every_case_once_per_epoch": true,
+    "selected_step": 2,
+    "selected_weights_reloaded": true,
+    "evaluation_batch_sizes": [
+      8,
+      1
+    ],
+    "evaluation_loss_absolute_difference": 0.0
+  },
+  "resumed": {
+    "steps": [
+      {
+        "step": 3,
+        "epoch": 1.5714285714285714,
+        "learning_rate": 2.5e-06
+      },
+      {
+        "step": 4,
+        "epoch": 2.0,
+        "learning_rate": 1.6666666666666667e-06
+      },
+      {
+        "step": 5,
+        "epoch": 2.571428571428571,
+        "learning_rate": 8.333333333333333e-07
+      },
+      {
+        "step": 6,
+        "epoch": 3.0,
+        "learning_rate": 0.0
+      }
+    ],
+    "epoch_order_hashes": [
+      "55b995733beb3637e7e65b14d284654e73f98351f975a4e3740bf1b5007f964a",
+      "2107467e2a8fdcbf80da6422cf5d9491d20ecef264cfaa4a46acdc18d7194306"
+    ],
+    "microbatches": [
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 1,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 32
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 8,
+        "denominator": 17
+      },
+      {
+        "size": 1,
+        "denominator": 17
+      }
+    ],
+    "clipping": [
+      {
+        "global_step_before_update": 2,
+        "microbatches_seen": 4,
+        "max_norm": 1.0,
+        "before": 2.010057210922241,
+        "after": 0.9999995827674866
+      },
+      {
+        "global_step_before_update": 3,
+        "microbatches_seen": 7,
+        "max_norm": 1.0,
+        "before": 2.008517026901245,
+        "after": 0.9999995827674866
+      },
+      {
+        "global_step_before_update": 4,
+        "microbatches_seen": 11,
+        "max_norm": 1.0,
+        "before": 2.0207011699676514,
+        "after": 0.9999995231628418
+      },
+      {
+        "global_step_before_update": 5,
+        "microbatches_seen": 14,
+        "max_norm": 1.0,
+        "before": 1.981313943862915,
+        "after": 0.9999994039535522
+      }
+    ],
+    "every_case_once_per_epoch": true,
+    "selected_step": 2,
+    "selected_weights_reloaded": true,
+    "evaluation_batch_sizes": [
+      8,
+      1
+    ],
+    "evaluation_loss_absolute_difference": 0.0
+  },
+  "resume_comparison": {
+    "separate_processes": true,
+    "max_parameter_absolute_difference": 0.0,
+    "epoch_orders_and_steps_equal": true,
+    "states_equal": {
+      "optimizer.pt": true,
+      "scheduler.pt": true
+    }
+  },
+  "research_training_performed": false,
+  "gpu_validated": false,
+  "local_artifacts": "artifacts/accumulation_validation/cc-fixed-v1.0.1/check-5oeje1j7"
+}

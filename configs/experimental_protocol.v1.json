@@ -2,8 +2,8 @@
   "protocol_id": "cc-fixed-v1.0.1",
   "version": "1.0.1",
   "design_date": "2026-11-17",
-  "status": "specified_recommendation_not_execution_frozen",
-  "execution_ready": false,
+  "status": "execution_frozen_local_gpu",
+  "execution_ready": true,
   "scope": {
     "task": "correct_guess_task",
     "comparison": "base_text versus personality_only",
@@ -65,7 +65,7 @@
     "pretrained_file": "model.safetensors",
     "pretrained_sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
     "pretrained_bytes": 498818054,
-    "pretrained_downloaded": false,
+    "pretrained_downloaded": true,
     "original_checkpoint_identity_verified": false,
     "config_overrides": {
       "num_labels": 2,
@@ -231,7 +231,7 @@
     "partial_checkpoint": "do not use; recover prior complete checkpoint or initial snapshot within retry limit"
   },
   "execution": {
-    "target": "one NVIDIA CUDA GPU, Linux x86_64, CPython 3.11.17; separate environment from verified Windows CPU venv",
+    "target": "one local NVIDIA GeForce RTX 5080 Laptop GPU on Windows x64, CPython 3.11.17; verified isolated CUDA environment",
     "target_versions": {
       "torch": "2.9.1+cu128",
       "transformers": "4.57.1",
@@ -240,7 +240,7 @@
       "tokenizers": "0.22.2",
       "regex": "2025.9.18"
     },
-    "gpu_environment_lock_status": "not created or validated",
+    "gpu_environment_lock_status": "environment/requirements-win-gpu.lock.txt installed and CUDA tensor operation verified",
     "world_size": 1,
     "precision": "float32",
     "required_gpu_preflight": {
@@ -260,15 +260,16 @@
       ]
     },
     "activation_gates": [
-      "user-selected GPU location and time/cost ceiling",
-      "verified separate GPU lock and full-size synthetic preflight",
-      "research training/final-evaluation runner implemented and audited",
-      "initialization snapshot hashes and Train/Validation no-overflow/integrity checks; Test length audit only after all selected checkpoints are locked",
+      "user-selected local RTX 5080; external cost limit 0 KRW and total GPU wall-time ceiling 24 hours in configs/execution_budget.json",
+      "verified GPU lock, pretrained weight SHA-256 and full-size synthetic CUDA preflight",
+      "research training/final-evaluation runners implemented and audited",
+      "paired initialization hashes and Train/Validation no-overflow/integrity checks; Test length audit only after all selected checkpoints are locked",
       "immutable protocol/config/environment activation manifest before research training"
     ],
-    "training_cli_implemented": false,
+    "training_cli_implemented": true,
     "download_weights_in_stage4": false,
-    "run_isolation": "fresh process for each research run"
+    "run_isolation": "fresh process for each research run",
+    "local_activation_note": "Windows CUDA import and full-size synthetic preflight passed on this host; replaces earlier Linux recommendation without changing model/training/evaluation settings. Exact previous config and evidence archived under reports/history/cc-fixed-v1.0.1-preactivation."
   },
   "outputs": {
     "root": "artifacts/experiments/cc-fixed-v1.0.1",

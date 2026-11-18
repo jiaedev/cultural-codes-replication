@@ -1,0 +1,29 @@
+# Preserve checkout bytes for frozen execution and verification hashes.
+configs/experimental_protocol.v1.json text eol=crlf
+configs/execution_budget.json text eol=crlf
+environment/requirements-win-gpu.lock.txt text eol=crlf
+reports/accumulation_validation.json text eol=crlf
+reports/full_model_gpu_preflight.json text eol=crlf
+reports/protocol_validation.json text eol=crlf
+reports/resolved_gpu_arguments.json text eol=crlf
+reports/stage5_evaluation_correction.json text eol=crlf
+reports/stage5_results.json text eol=lf
+reports/stage5_per_run.csv text eol=lf
+reports/stage5_paired_differences.csv text eol=lf
+reports/test_predictions.csv text eol=lf
+reports/tokenizer_manifest.json text eol=crlf
+scripts/activate_experiment.py text eol=lf
+scripts/train_research.py text eol=lf
+scripts/validate_protocol.py text eol=lf
+src/cultural_codes/data.py text eol=lf
+src/cultural_codes/metrics.py text eol=lf
+src/cultural_codes/protocol.py text eol=lf
+src/cultural_codes/trainer.py text eol=crlf
+
+# These recorded sources contain mixed line endings.
+scripts/evaluate_final.py -text
+scripts/evaluate_final_corrected.py -text
+scripts/execute_plan.py -text
+
+scripts/audit_stage5_results.py -text
+scripts/export_stage5_provenance.py text eol=lf

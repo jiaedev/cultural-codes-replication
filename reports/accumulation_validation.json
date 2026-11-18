@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-11-17T08:04:45.572988+00:00",
+  "generated_at_utc": "2026-11-17T17:28:34.797216+00:00",
   "protocol_id": "cc-fixed-v1.0.1",
-  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "protocol_sha256": "dea267bebe4c276547d07ce986a8969d47ac67eef06601356e57a3c5e8c05498",
   "script_sha256": "bbf32380c197f1e7da1a6bb3c7dd88fcbcc249e770cf508d70c256fa3026732f",
   "bridge_sha256": "c5e044c2700fc1cfcb1c5a6fd1cdf03dfbca2be01263a76a6e50064a2e0e07a7",
   "versions": {
@@ -384,5 +384,5 @@
   },
   "research_training_performed": false,
   "gpu_validated": false,
-  "local_artifacts": "artifacts/accumulation_validation/cc-fixed-v1.0.1/check-5oeje1j7"
+  "local_artifacts": "artifacts/accumulation_validation/cc-fixed-v1.0.1/check-x_0s7eb2"
 }

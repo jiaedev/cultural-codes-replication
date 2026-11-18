@@ -1,6 +1,6 @@
 # Experimental protocol
 
-**Recommended design v1.0.1 (2026-11-17): specified, not yet execution-frozen.** Scientific choices below form one fixed-settings limited replication. Stage 4 design work is complete; research activation remains blocked by the environment/runner gates in §8. No main training or A/B result has been produced.
+**Fixed-settings design v1.0.1: executed on the verified local GPU.** The scientific choices below define one limited replication. Ten planned runs and final Test evaluations are complete; [the execution report](stage5_training_evaluation.md) records results, integrity checks and an evaluation-only correction.
 
 The executable source of truth is [experimental_protocol.v1.json](../configs/experimental_protocol.v1.json). [Resolved arguments](../reports/resolved_protocol_arguments.json) expose installed Trainer defaults for all ten run identities on CPU; they are not proof of a CUDA environment. The [execution plan](../reports/experimental_run_plan.json) fixes IDs, paired order and artifact locations.
 
@@ -50,7 +50,7 @@ The independent review found that v1.0.0 inherited a mean of micro-batch means: 
 
 The bridge supplies `compute_loss_func` to Trainer 4.57.1, which counts group labels and avoids a second division by the accumulation-step count. Gradient clipping remains once per completed group, before the optimizer step; the scheduler advances once per optimizer update. This does not claim numerical equivalence to a physical batch with dropout enabled.
 
-No research runs existed under v1.0.0. Its configuration, implementation and generated evidence are preserved byte for byte in the [historical manifest](../reports/history/cc-fixed-v1.0.0/manifest.json). New run IDs and paths use v1.0.1. Seeds, rate, epoch budget, rows, selection rules and planned update counts are unchanged. [Regression evidence](../reports/accumulation_validation.json) tests equal and unequal groups, evaluation averaging, clipping, and recovery in separate CPU processes. GPU validation remains pending.
+No research runs existed under v1.0.0. Its configuration, implementation and generated evidence are preserved byte for byte in the [historical manifest](../reports/history/cc-fixed-v1.0.0/manifest.json). New run IDs and paths use v1.0.1. Seeds, rate, epoch budget, rows, selection rules and planned update counts are unchanged. [Regression evidence](../reports/accumulation_validation.json) tests equal and unequal groups, evaluation averaging, clipping, and recovery in separate CPU processes. GPU validation and the separately recorded local activation have since passed.
 
 ## 4. Paired seeds and randomness
 
@@ -70,7 +70,7 @@ Existing Train/Validation audits show a maximum of 197 and no information loss a
 
 Evaluate and save at every epoch, using Validation only. Maximize exact key **`eval_validation_macro_f1`**. Use strict greater comparison; an exactly equal floating score retains the earliest epoch. No early stopping: run all 15 epochs unless a technical failure occurs. Keep at most two complete epoch checkpoints (best and latest), with optimizer/scheduler/RNG state for recovery; export the selected model and a checkpoint-hash/selection manifest. Missing/nonfinite selection metrics fail clearly.
 
-The development builder has no Test dataset argument. The research runner is not implemented yet; its absence is an execution gate, not a claim that the public script is ready to run.
+The development builder has no Test dataset argument. The [research runner](../scripts/train_research.py) uses Train/Validation only, and the [separate final evaluator](../scripts/evaluate_final.py) requires all ten selected checkpoint manifests before reading Test.
 
 ## 6. Final Test evaluation and reporting
 
@@ -109,7 +109,7 @@ OOM, nonfinite loss/gradients, hash mismatch or unsupported deterministic operat
 
 ## 8. Execution readiness and remaining decisions
 
-The verified environment remains Windows CPU. The recommended main target is one NVIDIA GPU on a **separate Linux x86_64 environment**, CPython 3.11.17, torch 2.9.1+cu128 and the same core Transformers/Accelerate/metric versions. That target is a recommendation, not a validated GPU lock. Windows CUDA blocking is already documented; no repeated installs or security-policy changes were attempted.
+The active target is this PC’s single RTX 5080 Laptop GPU on Windows x64, CPython 3.11.17 and the [isolated GPU lock](../environment/requirements-win-gpu.lock.txt). The prior Linux recommendation and Windows DLL block are retained as historical context. A new CUDA wheel imported and passed a tensor operation without changing the security policy.
 
 Before activation, require:
 
@@ -120,7 +120,7 @@ Before activation, require:
 
 Test length checks remain a separate pre-scoring gate after all ten selections (§6).
 
-Current checks are [CPU synthetic protocol validation](../reports/protocol_validation.json), not GPU/full-model readiness. The JSON intentionally blocks research activation. The necessary user choice is the execution location and resource ceiling; the scientific recommendation is otherwise specified. Activation/freeze remains pending these gates.
+The [CPU protocol check](../reports/protocol_validation.json), [loss regression](../reports/accumulation_validation.json), [full-size GPU preflight](../reports/full_model_gpu_preflight.json) and [short synthetic timing blocks](../reports/gpu_synthetic_benchmark.json) match the active protocol hash. The user selected a 24-hour total GPU ceiling and no external service cost in [execution_budget.json](../configs/execution_budget.json). The ignored activation manifest freezes the actual code hashes, GPU environment, pinned bytes, initial snapshots, Train/Validation coverage and run order. It records the dirty Git tree with per-file hashes. Test length inspection remains deferred until all ten Validation selections are locked.
 
 ## 9. Reproduce the configuration check
 
@@ -134,3 +134,7 @@ The first command resolves all ten run arguments, hashes recorded research files
 The second command compares accumulated gradients with a single-batch mean CE reference for [8,8,8,8], [8,8,1] and [3], with dropout disabled only for that comparison. It also runs a 49-case, three-epoch tiny-model fixture with dropout enabled and a deliberately wrong initial bias to exercise norm-1 clipping. A separate process resumes the first epoch checkpoint and checks final parameters, optimizer/scheduler state, case order, complete evaluation and earliest-tie reload. Constant selection scores are a technical fixture, not model performance. Outputs go to a unique ignored artifact directory and `reports/accumulation_validation.json`.
 
 Underlying data and interpretation limits remain in [methods mapping](methods_mapping.md) and [validation](validation.md).
+
+## 10. Executed protocol record
+
+The ten fixed local GPU fits and ten final Test evaluations are complete under the configuration above. No scientific setting changed after activation. The first final-evaluation entry point failed before prediction because it passed preconverted integer labels to the strict CSV label converter; a separately hashed one-line evaluation-only correction was used after all ten Validation selections were locked. The [execution report](stage5_training_evaluation.md), [independent result audit](../reports/stage5_results.json) and [correction provenance](../reports/stage5_evaluation_correction.json) contain actual outputs and the failure boundary. This record does not alter the frozen protocol.

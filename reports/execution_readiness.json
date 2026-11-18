@@ -1,0 +1,36 @@
+{
+  "checked_at_utc": "2026-11-17T08:19:29.870442+00:00",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "source_commit": "8080f62d3c5a71f7c465189a690bf6ca868d50a2",
+  "working_tree_dirty": true,
+  "environment": {
+    "operating_system": "Windows",
+    "architecture": "AMD64",
+    "python": "3.11.17",
+    "torch": "2.9.1+cpu",
+    "torch_cuda_build": null,
+    "cuda_available": false
+  },
+  "checks": {
+    "protocol_validation.json": true,
+    "accumulation_validation.json": true,
+    "ten_planned_runs_consistent": true,
+    "train_source_bytes_match": true,
+    "validation_source_bytes_match": true,
+    "test_source_bytes_match": true,
+    "pretrained_weights_present_and_verified": false,
+    "gpu_lock_recorded": false,
+    "full_model_gpu_preflight_recorded": false,
+    "research_training_runner_present": false,
+    "final_test_runner_present": false,
+    "resource_ceiling_recorded": false,
+    "activation_manifest_recorded": false,
+    "research_activation_enabled": false,
+    "verified_target_gpu_available_here": false
+  },
+  "ready_for_research_training": false,
+  "completed_training_runs": 0,
+  "completed_final_test_evaluations": 0,
+  "note": "Readiness evidence only. Source splits are hashed without parsing or tokenizing Test content. No training or predictions."
+}

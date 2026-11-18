@@ -154,8 +154,8 @@ def main():
         exact_tie_keeps_earliest=flags==[True,False,False],evaluation_partial_batch_sizes=evaluation_sizes,
         optimizer_defaults=actual_optimizer.defaults,scheduler=type(first_trainer.lr_scheduler).__name__,
         trainer_predicted_updates_per_epoch=trainer_steps[1],trainer_predicted_updates_per_run=trainer_steps[-1],
-        full_model_structural_parameter_count=parameter_count,full_model_execution_validated=False,
-        research_activation_blocked=activation_blocked,gpu_validated=False,pretrained_weights_downloaded=False,
+        full_model_structural_parameter_count=parameter_count,full_model_execution_validated_in_this_check=False,
+        research_activation_blocked_on_cpu=activation_blocked,gpu_validated_in_this_check=False,pretrained_weights_downloaded_in_this_check=False,
         case_ids_unique_478=True,synthetic_token_overflow_rejected=overflow_rejected,
         different_seeds_initialize_different_heads=True,old_adapter_files_modified=False,
         script_sha256=sha256(Path(__file__)),bridge_sha256=sha256(ROOT/"src/cultural_codes/protocol.py"))

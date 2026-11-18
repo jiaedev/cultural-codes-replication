@@ -4,7 +4,7 @@ Replication of the target-level success-prediction task in Shaikh et al., [*Mode
 
 **Research question:** Does adding giver and guesser personality information improve prediction of intentional guessing success on the released Cultural Codes examples?
 
-**Status:** Dataset validation and CPU, single-process implementation checks are complete (Stages 2-3). The fixed-settings protocol design is specified; execution freeze and GPU/runner gates remain pending. No research-data training, A/B performance comparison, Test predictions, or pretrained-weight download has been performed. GPU execution and full-size model resource requirements remain unverified.
+**Status:** The fixed ten-run local GPU experiment and final Test evaluation are complete. All ten fits, 4,780 Test predictions and the independent result audit passed. A recorded final-evaluation label-conversion error was corrected without changing training or checkpoint selection. See [executed results](docs/stage5_training_evaluation.md).
 
 ## Comparison design
 
@@ -16,7 +16,7 @@ The project uses the official preprocessed `correct_guess_task` splits without c
 | Condition B | `personality_only`: giver/guesser personality profiles, followed by the same base input |
 | Model candidate | `FacebookAI/roberta-base`, [pinned revision and configuration](configs/model_candidate.json) |
 | Primary metric | Macro-F1 across failure and success |
-| Planned repetition | Five paired seeds; fixed settings specified in the [protocol](docs/experimental_protocol.md) |
+| Repetition | Five paired seeds completed; fixed settings specified in the [protocol](docs/experimental_protocol.md) |
 
 The classifier receives the intended target and giver rationale, which are hidden from the human guesser. This is success prediction with privileged information, rather than a model of the guesser's information state.
 
@@ -28,7 +28,11 @@ The classifier receives the intended target and giver rationale, which are hidde
 - **Selection and coverage:** A separate adapter connects `eval_validation_macro_f1` to checkpoint selection, excludes Test from the development builder, and preserves final incomplete evaluation batches under the tested configuration.
 - **Tokenizer and execution:** The pinned tokenizer preserves all Train/Validation inputs at its 512-token capacity (maximum observed: 197, including special tokens). A small randomly initialized RoBERTa completes synthetic forward/loss, two optimizer steps, evaluation, checkpoint selection, save and reload on CPU.
 
-These are data and implementation checks, not evidence of a personality-related performance improvement. Detailed evidence is in [validation](docs/validation.md) and the [public validation summary](reports/research_validation_summary.json).
+Data and implementation checks remain separate from the [executed predictive comparison](docs/stage5_training_evaluation.md). The observed difference is descriptive and does not establish a causal personality effect.
+
+## Executed comparison
+
+Across five paired seeds, the profile prefix increased mean Test Macro-F1 from 0.5586 to 0.6346. Mean failure recall rose from 0.1725 to 0.3541 while success recall fell from 0.9458 to 0.8992. The [results analysis](docs/results_analysis.md) explains the paired errors, seed variation, post hoc profile groups and limits of the published comparison. The [execution report](docs/stage5_training_evaluation.md) documents the ten fits, checkpoint selection and final evaluation.
 
 ## Reproduce the checks
 
@@ -53,9 +57,11 @@ See [environment setup and troubleshooting](environment/README.md) for interpret
 
 ## Limits and next steps
 
+The earlier [pre-execution audit](reports/execution_readiness.json) records the original stop before GPU preparation. Current execution evidence is the [GPU preflight](reports/full_model_gpu_preflight.json), [short timing blocks](reports/gpu_synthetic_benchmark.json), [GPU lock](environment/requirements-win-gpu.lock.txt) and ignored activation manifest under `artifacts/experiments/cc-fixed-v1.0.1/activation.json`. All ten Validation selections were locked before the separate final Test evaluation.
+
 Raw guesses, participant/game/turn IDs, and the original data-construction pipeline are unavailable in the inspected release. Labels cannot be regenerated, participant-level split separation cannot be independently checked, and personality score construction remains unverified. The executable model candidate has not been established as the exact original checkpoint.
 
-Any future predictive gain would not establish a causal personality effect or equivalence to human cognitive processes. [Methods mapping](docs/methods_mapping.md) distinguishes the paper, public artifacts and this implementation. The [roadmap](ROADMAP.md) and [recommended experimental protocol](docs/experimental_protocol.md) describe the remaining work.
+The observed predictive difference does not establish a causal personality effect or equivalence to human cognitive processes. [Methods mapping](docs/methods_mapping.md) distinguishes the paper, public artifacts and this implementation. The [roadmap](ROADMAP.md) and [recommended experimental protocol](docs/experimental_protocol.md) describe the remaining work.
 
 ## Repository guide
 

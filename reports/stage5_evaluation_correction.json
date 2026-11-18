@@ -1,0 +1,23 @@
+{
+  "status": "resolved_after_recorded_evaluation_only_correction",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "dea267bebe4c276547d07ce986a8969d47ac67eef06601356e57a3c5e8c05498",
+  "selection_lock_sha256": "9864b378d692acba7f16e1b37d0e7a9b8c711a8c87aab468bac53d217982d7d4",
+  "original_evaluator_sha256": "e6c915d31d2ffa9c9c4f12d0d49de5d608f79a9c9fca768d629f2e42df01c86f",
+  "corrected_evaluator_sha256": "5cf3597d3f0ba050ac6cd95aeb314261092a894f449304470c0d45e7262acc0d",
+  "original_failure": "Test dataset construction passed integer labels 0/1 into TextDataset, whose strict convert_label accepts raw Boolean values or strings False/True; ValueError before model scoring",
+  "original_failure_log": "artifacts/experiments/cc-fixed-v1.0.1/final_test.stderr.log",
+  "correction": "Pass original CSV output strings to make_dataset; retain separately converted integer labels for prediction-reference checks",
+  "changed_lines": 1,
+  "training_or_checkpoint_selection_changed": false,
+  "selected_checkpoints_locked_before_correction": 10,
+  "test_prediction_files_before_correction": 0,
+  "synthetic_raw_label_conversion_passed": true,
+  "corrected_command": ".venv-gpu/Scripts/python.exe -B scripts/evaluate_final_corrected.py",
+  "test_prediction_files_after_correction": 10,
+  "test_metric_files_after_correction": 10,
+  "independent_result_audit": "passed",
+  "independent_result_audit_sha256": "f5d1ae1ed2cac96519ae7b71271a4d77430491bd9232fbb8ec8029496cd2b595",
+  "final_prediction_rows_verified": 4780,
+  "limitations": "The correction is a separate evaluation entry point and is not part of the original activation code hash; its exact bytes are identified above. No Test-driven model or checkpoint change was made."
+}

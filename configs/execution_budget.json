@@ -1,0 +1,13 @@
+{
+  "protocol_id": "cc-fixed-v1.0.1",
+  "location": "local Windows PC, NVIDIA GeForce RTX 5080 Laptop GPU",
+  "external_service_cost_limit_krw": 0,
+  "total_gpu_wall_time_limit_seconds": 86400,
+  "time_limit_selected_by_user": "2026-11-17",
+  "measurement_basis": [
+    "reports/full_model_gpu_preflight.json",
+    "reports/gpu_synthetic_benchmark.json"
+  ],
+  "estimate_status": "short synthetic blocks only; full ten-run runtime unmeasured",
+  "on_limit": "stop launching new runs; retain complete checkpoints and attempt history; report incomplete summary"
+}

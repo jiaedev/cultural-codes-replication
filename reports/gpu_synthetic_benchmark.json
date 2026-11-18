@@ -1,0 +1,37 @@
+{
+  "checked_at_utc": "2026-11-17T17:29:37.970300+00:00",
+  "scope": "Five updates each of invented fixed-length token IDs at 100 and 170, full-size pretrained model, same optimizer/config; technical timing only.",
+  "protocol_id": "cc-fixed-v1.0.1",
+  "protocol_sha256": "dea267bebe4c276547d07ce986a8969d47ac67eef06601356e57a3c5e8c05498",
+  "script_sha256": "8ce902b0fc8187ea85ebac720223a1a7368863a0eac2acb2f7e5756d4aa4c4eb",
+  "source_weight_sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+  "environment": {
+    "os": "Windows",
+    "torch": "2.9.1+cu128",
+    "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU"
+  },
+  "blocks": [
+    {
+      "condition": "A",
+      "synthetic_token_length": 100,
+      "training_examples": 160,
+      "optimizer_steps": 5,
+      "elapsed_train_eval_save_seconds": 3.963,
+      "trainer_reported_runtime_seconds": 3.8438,
+      "peak_allocated_bytes": 2628583424,
+      "peak_reserved_bytes": 3179282432
+    },
+    {
+      "condition": "B",
+      "synthetic_token_length": 170,
+      "training_examples": 160,
+      "optimizer_steps": 5,
+      "elapsed_train_eval_save_seconds": 4.646,
+      "trainer_reported_runtime_seconds": 4.5353,
+      "peak_allocated_bytes": 3216474112,
+      "peak_reserved_bytes": 3550478336
+    }
+  ],
+  "selection_performance_claim": false,
+  "actual_research_training": false
+}

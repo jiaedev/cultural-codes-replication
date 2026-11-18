@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-11-17T08:03:41.723327+00:00",
+  "generated_at_utc": "2026-11-17T17:28:59.237358+00:00",
   "protocol_id": "cc-fixed-v1.0.1",
-  "protocol_sha256": "402d93e00600a6d816b6b1e3a47926e9905cf57c2983e1d1cb22ea87f90f2a8d",
+  "protocol_sha256": "dea267bebe4c276547d07ce986a8969d47ac67eef06601356e57a3c5e8c05498",
   "scope": "CPU synthetic/tiny only; research data files hashed but not tokenized or trained; no Test predictions.",
   "paired_seed_checks": [
     {
@@ -98,14 +98,14 @@
   "trainer_predicted_updates_per_epoch": 266,
   "trainer_predicted_updates_per_run": 3990,
   "full_model_structural_parameter_count": 124647170,
-  "full_model_execution_validated": false,
-  "research_activation_blocked": true,
-  "gpu_validated": false,
-  "pretrained_weights_downloaded": false,
+  "full_model_execution_validated_in_this_check": false,
+  "research_activation_blocked_on_cpu": true,
+  "gpu_validated_in_this_check": false,
+  "pretrained_weights_downloaded_in_this_check": false,
   "case_ids_unique_478": true,
   "synthetic_token_overflow_rejected": true,
   "different_seeds_initialize_different_heads": true,
   "old_adapter_files_modified": false,
-  "script_sha256": "e61214a0efb06e17a699d5d131300bbe21ee9a3e7094288a244cf0c7fbc8e201",
+  "script_sha256": "b6e3891f66f8a72aa265386bc4bf89b9e92329bac40291a782feff656789008a",
   "bridge_sha256": "c5e044c2700fc1cfcb1c5a6fd1cdf03dfbca2be01263a76a6e50064a2e0e07a7"
 }
